@@ -1,4 +1,4 @@
-package sh.miles.inventory.parser.adapter.xml;
+package sh.miles.inventory.parser.xml.adapter;
 
 import de.themoep.minedown.MineDown;
 import de.themoep.minedown.MineDownStringifier;

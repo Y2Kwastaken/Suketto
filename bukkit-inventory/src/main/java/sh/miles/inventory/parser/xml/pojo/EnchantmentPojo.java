@@ -1,9 +1,9 @@
-package sh.miles.inventory.parser.pojo;
+package sh.miles.inventory.parser.xml.pojo;
 
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.bukkit.enchantments.Enchantment;
-import sh.miles.inventory.parser.adapter.xml.XMLEnchantmentAdapter;
+import sh.miles.inventory.parser.xml.adapter.XMLEnchantmentAdapter;
 
 import java.util.Objects;
 

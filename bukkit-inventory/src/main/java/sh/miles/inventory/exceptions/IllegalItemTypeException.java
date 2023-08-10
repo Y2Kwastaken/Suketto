@@ -1,4 +1,4 @@
-package sh.miles.inventory.api.exceptions;
+package sh.miles.inventory.exceptions;
 
 import org.bukkit.Material;
 

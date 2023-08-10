@@ -1,4 +1,4 @@
-package sh.miles.inventory.parser.pojo;
+package sh.miles.inventory.parser.xml.pojo;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;

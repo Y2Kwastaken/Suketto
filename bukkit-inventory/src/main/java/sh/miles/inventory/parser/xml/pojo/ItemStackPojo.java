@@ -1,4 +1,4 @@
-package sh.miles.inventory.parser.pojo;
+package sh.miles.inventory.parser.xml.pojo;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -7,14 +7,12 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import lombok.Getter;
-import lombok.Setter;
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
-import sh.miles.inventory.parser.adapter.xml.XMLBaseComponentAdapter;
-import sh.miles.inventory.parser.adapter.xml.XMLEnchantmentAdapter;
-import sh.miles.inventory.parser.adapter.xml.XMLItemFlagAdapter;
-import sh.miles.inventory.parser.adapter.xml.XMLMaterialAdapter;
+import sh.miles.inventory.parser.xml.adapter.XMLBaseComponentAdapter;
+import sh.miles.inventory.parser.xml.adapter.XMLItemFlagAdapter;
+import sh.miles.inventory.parser.xml.adapter.XMLMaterialAdapter;
 
 import java.util.List;
 import java.util.Objects;
@@ -30,6 +28,8 @@ public class ItemStackPojo {
     @XmlAttribute(name = "item-type")
     @XmlJavaTypeAdapter(XMLMaterialAdapter.class)
     private Material itemType;
+    @XmlAttribute(name = "amount")
+    private String amount;
     @XmlElement(name = "name")
     @XmlJavaTypeAdapter(XMLBaseComponentAdapter.class)
     private BaseComponent name;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chest title="[Example](color=#fff-#000)" rows="3" columns="9"
-       responder="sh.miles.inventory.ContainerResponder" link="inventory-config.json">
+       responder="sh.miles.inventory.ContainerResponder">
 
     <hgroups>
         <hgroup row="3">

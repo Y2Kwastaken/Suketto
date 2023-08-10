@@ -1,4 +1,4 @@
-package sh.miles.inventory.parser.adapter.xml;
+package sh.miles.inventory.parser.xml.adapter;
 
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 import org.bukkit.NamespacedKey;

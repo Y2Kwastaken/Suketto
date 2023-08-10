@@ -1,4 +1,4 @@
-package sh.miles.inventory.parser.pojo;
+package sh.miles.inventory.parser.xml.pojo;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -9,8 +9,8 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import lombok.Getter;
 import net.md_5.bungee.api.chat.BaseComponent;
-import sh.miles.inventory.parser.adapter.xml.XMLBaseComponentAdapter;
-import sh.miles.inventory.parser.adapter.xml.XMLClassAdapter;
+import sh.miles.inventory.parser.xml.adapter.XMLBaseComponentAdapter;
+import sh.miles.inventory.parser.xml.adapter.XMLClassAdapter;
 
 import java.util.List;
 import java.util.Objects;
@@ -24,9 +24,9 @@ public class ChestPojo {
     @XmlJavaTypeAdapter(XMLBaseComponentAdapter.class)
     private BaseComponent title;
     @XmlAttribute(name = "rows", required = true)
-    private int rows;
+    private String rows;
     @XmlAttribute(name = "columns", required = true)
-    private int columns;
+    private String columns;
     @XmlAttribute(name = "responder")
     @XmlJavaTypeAdapter(XMLClassAdapter.class)
     private Class<?> responder;
