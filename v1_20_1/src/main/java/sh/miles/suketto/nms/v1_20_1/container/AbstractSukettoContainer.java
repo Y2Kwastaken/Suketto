@@ -1,4 +1,4 @@
-package sh.miles.suketto.nms.v1_20_1.inventory;
+package sh.miles.suketto.nms.v1_20_1.container;
 
 import com.google.common.base.Preconditions;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -7,20 +7,20 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import sh.miles.suketto.nms.inventory.SukettoCustomInventory;
+import sh.miles.suketto.nms.container.SukettoContainer;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-public abstract class AbstractSukettoCustomInventory implements SukettoCustomInventory {
+public abstract class AbstractSukettoContainer implements SukettoContainer {
 
     protected final Map<Integer, ItemStack> slots;
     protected final int minSlot;
     protected final int maxSlot;
     private final BaseComponent title;
 
-    protected AbstractSukettoCustomInventory(final BaseComponent title, final int minSlot, final int maxSlot) {
+    protected AbstractSukettoContainer(final BaseComponent title, final int minSlot, final int maxSlot) {
         this.slots = new HashMap<>();
         this.title = title;
         this.minSlot = minSlot;

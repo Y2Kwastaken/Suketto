@@ -1,12 +1,12 @@
-package sh.miles.suketto.nms.inventory;
+package sh.miles.suketto.nms.container;
 
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A custom inventory representing an anvil
+ * A custom container representing an anvil
  */
-public interface AnvilCustomInventory extends SukettoCustomInventory {
+public interface AnvilContainer extends SukettoContainer {
 
     int FIRST_INDEX = 0;
     int SECOND_INDEX = 1;

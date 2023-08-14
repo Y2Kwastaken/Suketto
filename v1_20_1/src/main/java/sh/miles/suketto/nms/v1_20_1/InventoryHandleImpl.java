@@ -15,9 +15,9 @@ import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sh.miles.suketto.nms.InventoryHandle;
-import sh.miles.suketto.nms.inventory.SukettoCustomInventory;
-import sh.miles.suketto.nms.inventory.SukettoCustomInventoryType;
-import sh.miles.suketto.nms.v1_20_1.inventory.AnvilCustomInventoryImpl;
+import sh.miles.suketto.nms.container.SukettoContainer;
+import sh.miles.suketto.nms.container.SukettoContainerType;
+import sh.miles.suketto.nms.v1_20_1.container.AnvilContainerImpl;
 import sh.miles.suketto.nms.v1_20_1.utils.ServerAdapter;
 
 public class InventoryHandleImpl implements InventoryHandle {
@@ -44,21 +44,6 @@ public class InventoryHandleImpl implements InventoryHandle {
         splayer.containerMenu = menu;
         splayer.initMenu(menu);
         return splayer.containerMenu.getBukkitView();
-    }
-
-    @Override
-    public SukettoCustomInventory create(@NotNull BaseComponent title, @NotNull SukettoCustomInventoryType inventoryType) {
-        Preconditions.checkNotNull(title);
-        Preconditions.checkNotNull(inventoryType);
-
-        switch (inventoryType) {
-            case ANVIL -> {
-                return new AnvilCustomInventoryImpl(title);
-            }
-            default -> {
-                throw new IllegalArgumentException("somehow no inventory was created");
-            }
-        }
     }
 
     @Override

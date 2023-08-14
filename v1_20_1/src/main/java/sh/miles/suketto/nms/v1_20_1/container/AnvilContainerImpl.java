@@ -1,4 +1,4 @@
-package sh.miles.suketto.nms.v1_20_1.inventory;
+package sh.miles.suketto.nms.v1_20_1.container;
 
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.minecraft.world.level.block.Blocks;
@@ -8,46 +8,46 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import sh.miles.suketto.nms.inventory.AnvilCustomInventory;
+import sh.miles.suketto.nms.container.AnvilContainer;
 import sh.miles.suketto.nms.v1_20_1.utils.ServerInventoryUtils;
 
-public class AnvilCustomInventoryImpl extends AbstractSukettoCustomInventory implements AnvilCustomInventory {
+public class AnvilContainerImpl extends AbstractSukettoContainer implements AnvilContainer {
 
-    public AnvilCustomInventoryImpl(BaseComponent title) {
-        super(title, AnvilCustomInventory.FIRST_INDEX, AnvilCustomInventory.RESULT_INDEX);
+    public AnvilContainerImpl(BaseComponent title) {
+        super(title, AnvilContainer.FIRST_INDEX, AnvilContainer.RESULT_INDEX);
     }
 
     @NotNull
     @Override
     public ItemStack getFirst() {
-        return super.slots.get(AnvilCustomInventory.FIRST_INDEX);
+        return super.getItem(AnvilContainer.FIRST_INDEX);
     }
 
     @NotNull
     @Override
     public ItemStack getSecond() {
-        return super.slots.get(AnvilCustomInventory.SECOND_INDEX);
+        return super.getItem(AnvilContainer.SECOND_INDEX);
     }
 
     @NotNull
     @Override
     public ItemStack getResult() {
-        return super.slots.get(AnvilCustomInventory.RESULT_INDEX);
+        return super.getItem(AnvilContainer.RESULT_INDEX);
     }
 
     @Override
     public void setFirst(@NotNull ItemStack item) {
-        setItem(AnvilCustomInventory.FIRST_INDEX, item);
+        setItem(AnvilContainer.FIRST_INDEX, item);
     }
 
     @Override
     public void setSecond(@NotNull ItemStack item) {
-        setItem(AnvilCustomInventory.SECOND_INDEX, item);
+        setItem(AnvilContainer.SECOND_INDEX, item);
     }
 
     @Override
     public void setResult(@NotNull ItemStack item) {
-        setItem(AnvilCustomInventory.RESULT_INDEX, item);
+        setItem(AnvilContainer.RESULT_INDEX, item);
     }
 
     @Override

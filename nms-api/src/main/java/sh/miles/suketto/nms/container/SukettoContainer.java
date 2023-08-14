@@ -1,4 +1,4 @@
-package sh.miles.suketto.nms.inventory;
+package sh.miles.suketto.nms.container;
 
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.entity.HumanEntity;
@@ -10,10 +10,10 @@ import org.jetbrains.annotations.NotNull;
  * an inventory for inventories not covered by bukkit.
  * <p>
  * Note: after the inventory is opened changes in the inventory are not reflected live to the player you must use the
- * view or alternatively the view can apply updates by using {@link SukettoCustomInventory#update(InventoryView)}
+ * view or alternatively the view can apply updates by using {@link SukettoContainer#update(InventoryView)}
  * </p>
  */
-public interface SukettoCustomInventory {
+public interface SukettoContainer {
 
     /**
      * Sets the item stack at the provided index
