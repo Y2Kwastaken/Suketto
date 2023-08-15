@@ -1,7 +1,6 @@
 package sh.miles.suketto.bukkit.chat;
 
 import com.google.common.base.Preconditions;
-import lombok.Getter;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -21,7 +20,6 @@ import java.util.List;
  * @implNote This class will be deprecated for removal in 2 minor versions after the BungeeChat Component Builder build
  * removal.
  */
-@Getter
 @SuppressWarnings("deprecation")
 public final class Component {
 
@@ -55,6 +53,13 @@ public final class Component {
         this(new BaseComponent[]{component});
     }
 
+    public List<BaseComponent> getParts() {
+        return this.parts;
+    }
+
+    public int getCursor() {
+        return this.cursor;
+    }
 
     private BaseComponent getDummy() {
         if (dummy == null) {
