@@ -21,4 +21,14 @@ public class ContainerSlotHolder implements SlotHolder<SukettoContainer> {
     public SukettoContainer getHolder() {
         return container;
     }
+
+    @Override
+    public int getMinIndex() {
+        return container.getMinSlot();
+    }
+
+    @Override
+    public int getMaxIndex() {
+        return container.getMaxSlot();
+    }
 }

@@ -62,6 +62,10 @@ public abstract class AbstractMenu<H, V> implements MenuHandler {
         return new HashMap<>(this.buttons);
     }
 
+    public SlotHolder<H> getSlotHolder() {
+        return this.slotHolder;
+    }
+
     /**
      * Validates the given slot
      *

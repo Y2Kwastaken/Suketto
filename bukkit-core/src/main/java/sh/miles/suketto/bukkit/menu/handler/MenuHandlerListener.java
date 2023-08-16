@@ -6,8 +6,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.inventory.Inventory;
-import org.checkerframework.checker.units.qual.N;
 import org.jetbrains.annotations.NotNull;
 import sh.miles.suketto.annotations.Internal;
 
@@ -19,9 +17,9 @@ import java.util.function.Consumer;
 @Internal
 public class MenuHandlerListener implements Listener {
 
-    private final MenuHandlerManager manager;
+    private final MenuManager manager;
 
-    public MenuHandlerListener(@NotNull final MenuHandlerManager manager) {
+    public MenuHandlerListener(@NotNull final MenuManager manager) {
         this.manager = manager;
     }
 

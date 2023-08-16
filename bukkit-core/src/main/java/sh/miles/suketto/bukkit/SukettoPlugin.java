@@ -1,8 +1,9 @@
 package sh.miles.suketto.bukkit;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import sh.miles.suketto.bukkit.command.SCommandRegistrar;
 import sh.miles.suketto.bukkit.menu.handler.MenuHandlerListener;
-import sh.miles.suketto.bukkit.menu.handler.MenuHandlerManager;
+import sh.miles.suketto.bukkit.menu.handler.MenuManager;
 import sh.miles.suketto.bukkit.task.SukettoScheduler;
 import sh.miles.suketto.bukkit.task.TaskWrapper;
 
@@ -13,13 +14,15 @@ public class SukettoPlugin extends JavaPlugin {
 
     private TaskWrapper taskWrapper;
     private SukettoScheduler schedulerService;
-    private MenuHandlerManager menuManager;
+    private MenuManager menuManager;
+    private SCommandRegistrar commandRegistrar;
 
     @Override
     public void onEnable() {
         taskWrapper = new TaskWrapper(this);
         schedulerService = new SukettoScheduler();
-        menuManager = new MenuHandlerManager();
+        menuManager = new MenuManager();
+        commandRegistrar = new SCommandRegistrar();
 
         getServer().getPluginManager().registerEvents(new MenuHandlerListener(menuManager), this);
     }
@@ -45,9 +48,19 @@ public class SukettoPlugin extends JavaPlugin {
     /**
      * Manages menu opening and registration for events and more
      *
-     * @return
+     * @return the suketto MenuManager
      */
-    public MenuHandlerManager getMenuManager() {
+    public MenuManager getMenuManager() {
         return this.menuManager;
     }
+
+    /**
+     * Retrieves the Command Registrar which is responsible for registering commands
+     *
+     * @return the command registrar
+     */
+    public SCommandRegistrar getCommandRegistrar() {
+        return this.commandRegistrar;
+    }
+
 }

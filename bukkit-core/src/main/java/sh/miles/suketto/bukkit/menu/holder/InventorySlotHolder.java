@@ -24,4 +24,14 @@ public class InventorySlotHolder implements SlotHolder<Inventory> {
     public Inventory getHolder() {
         return inventory;
     }
+
+    @Override
+    public int getMaxIndex() {
+        return inventory.getSize() - 1;
+    }
+
+    @Override
+    public int getMinIndex() {
+        return 0;
+    }
 }

@@ -5,12 +5,14 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
+import sh.miles.suketto.annotations.NMS;
 import sh.miles.suketto.bukkit.menu.button.MenuButton;
 import sh.miles.suketto.bukkit.menu.button.ViewMenuButton;
 import sh.miles.suketto.bukkit.menu.holder.SlotHolder;
 import sh.miles.suketto.nms.container.SukettoContainer;
 
-public abstract class AbstractContainerMenu extends AbstractMenu<SukettoContainer, HumanEntity> {
+@NMS
+public abstract class AbstractContainerMenu<V extends HumanEntity> extends AbstractMenu<SukettoContainer, V> {
 
     private InventoryView activeView;
 
@@ -19,7 +21,7 @@ public abstract class AbstractContainerMenu extends AbstractMenu<SukettoContaine
     }
 
     @Override
-    public void apply(@NotNull HumanEntity viewer) {
+    public void apply(@NotNull V viewer) {
         getButtons().forEach((slot, button) -> {
             if (button instanceof ViewMenuButton vbutton) {
                 vbutton.build(viewer);
@@ -52,5 +54,9 @@ public abstract class AbstractContainerMenu extends AbstractMenu<SukettoContaine
             throw new IllegalStateException("The given menu is already being viewed. Multiple viewers can not view it simultaneously");
         }
         this.activeView = slotHolder.getHolder().open(entity);
+    }
+
+    public InventoryView getActiveView() {
+        return this.activeView;
     }
 }

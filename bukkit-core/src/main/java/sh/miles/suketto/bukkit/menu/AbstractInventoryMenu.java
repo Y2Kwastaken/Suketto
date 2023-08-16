@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
+import sh.miles.suketto.annotations.NMS;
 import sh.miles.suketto.bukkit.menu.button.MenuButton;
 import sh.miles.suketto.bukkit.menu.holder.SlotHolder;
 import sh.miles.suketto.minecraft.VersionHandle;
@@ -32,6 +33,7 @@ public abstract class AbstractInventoryMenu<V> extends AbstractMenu<Inventory, V
         }
     }
 
+    @NMS
     @Override
     public void open(@NotNull HumanEntity entity) {
         if (!(entity instanceof Player player)) {
