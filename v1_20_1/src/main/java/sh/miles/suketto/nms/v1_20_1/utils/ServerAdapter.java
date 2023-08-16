@@ -7,6 +7,7 @@ import net.md_5.bungee.chat.ComponentSerializer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
+import org.bukkit.craftbukkit.v1_20_R1.entity.CraftHumanEntity;
 import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_20_R1.inventory.CraftItemStack;
 import org.bukkit.craftbukkit.v1_20_R1.util.CraftChatMessage;
@@ -91,6 +92,11 @@ public final class ServerAdapter {
         return ((CraftPlayer) player).getHandle();
     }
 
+    @NotNull
+    public static net.minecraft.world.entity.player.Player toMinecraftPlayer(@NotNull final HumanEntity human) {
+        return ((CraftHumanEntity) human).getHandle();
+    }
+
     /**
      * Gets the ServerPlayer from the provided HumanEntity assuming it is a player
      *
@@ -105,6 +111,7 @@ public final class ServerAdapter {
 
     /**
      * Gets the Craftbukkit ItemStack from an NMS ItemStack
+     *
      * @param nmsItem the nms item stack to translate
      * @return the craft item equivalent
      */
@@ -115,6 +122,7 @@ public final class ServerAdapter {
 
     /**
      * Gets the NMS ItemStack from a provided Craftbukkit ItemStack
+     *
      * @param craftItem the craft item stack to translate
      * @return the nms item equivalent
      */
@@ -125,6 +133,7 @@ public final class ServerAdapter {
 
     /**
      * Gets an NMS ItemStack from a provided Bukkit ItemStack
+     *
      * @param bukkitItem the bukkit item to translate
      * @return the nms item equivalent
      */
