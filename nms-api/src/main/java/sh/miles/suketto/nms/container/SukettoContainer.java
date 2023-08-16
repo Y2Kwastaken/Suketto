@@ -54,6 +54,19 @@ public interface SukettoContainer {
     BaseComponent getTitle();
 
     /**
+     * Gets the maximum slot index of the container
+     *
+     * @return the maximum slot index
+     */
+    int getMaxSlot();
+
+    /**
+     * Gets the minimum slot index of the container
+     * @return the minimum slot index
+     */
+    int getMinSlot();
+
+    /**
      * Opens the inventory for the entity human
      *
      * @param human the human to open the inventory

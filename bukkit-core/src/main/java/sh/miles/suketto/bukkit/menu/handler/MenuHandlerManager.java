@@ -4,7 +4,7 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import sh.miles.suketto.bukkit.menu.SimpleInventoryMenu;
+import sh.miles.suketto.bukkit.menu._old.AbstractInventoryMenu;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,15 +18,22 @@ public class MenuHandlerManager {
     }
 
     /**
-     * Opens a simple inventory menu
+     * Opens an abstract inventory menu
      *
      * @param menu    the menu to open
      * @param viewers the viewers to open the menu for
      */
-    public void open(@NotNull final SimpleInventoryMenu menu, @NotNull HumanEntity... viewers) {
-        this.handlers.put(menu.getInventory(), menu);
-        menu.apply(null);
+    @SuppressWarnings("unchecked")
+    public final <V> void open(@NotNull final AbstractInventoryMenu<V> menu, @NotNull HumanEntity... viewers) {
+        boolean isVoid = menu.getViewerClass().isInstance(Void.class);
+        boolean isHumanEntity = menu.getViewerClass().isInstance(HumanEntity.class);
+        if (isVoid) {
+            menu.apply(null);
+        }
         for (HumanEntity viewer : viewers) {
+            if (isHumanEntity) {
+                menu.apply((V) viewer);
+            }
             menu.open(viewer);
         }
     }

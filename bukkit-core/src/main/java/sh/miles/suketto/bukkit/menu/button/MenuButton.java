@@ -3,7 +3,7 @@ package sh.miles.suketto.bukkit.menu.button;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import sh.miles.suketto.bukkit.menu.AbstractMenu;
+import sh.miles.suketto.bukkit.menu._old.AbstractMenu;
 
 /**
  * A menu button that goes inside an implementation of {@link AbstractMenu}

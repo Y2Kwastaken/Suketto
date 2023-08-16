@@ -62,6 +62,16 @@ public abstract class AbstractSukettoContainer implements SukettoContainer {
         return this.title;
     }
 
+    @Override
+    public int getMaxSlot() {
+        return maxSlot;
+    }
+
+    @Override
+    public int getMinSlot() {
+        return minSlot;
+    }
+
     protected boolean invalidSlots(int index) {
         return index > maxSlot || index < minSlot;
     }

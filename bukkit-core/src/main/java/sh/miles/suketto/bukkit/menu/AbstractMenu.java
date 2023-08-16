@@ -1,55 +1,94 @@
 package sh.miles.suketto.bukkit.menu;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import sh.miles.suketto.bukkit.menu.button.MenuButton;
+import sh.miles.suketto.bukkit.menu.button.ViewMenuButton;
 import sh.miles.suketto.bukkit.menu.handler.MenuHandler;
+import sh.miles.suketto.bukkit.menu.holder.SlotHolder;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Defines a specific set of instructions that an inventory can follow.
+ * An abstract implementation of MenuHandler that provides the most basic structure needed
  *
- * @param <V>
+ * @param <H> the type of holder
+ * @param <V> the type of viewer
  */
-public abstract class AbstractMenu<V> implements MenuHandler {
+public abstract class AbstractMenu<H, V> implements MenuHandler {
 
     private final Map<Integer, MenuButton> buttons;
-    private final int minSlot;
-    private final int maxSlot;
+    protected final SlotHolder<H> slotHolder;
 
-    protected AbstractMenu(final int minSlot, final int maxSlot) {
+    protected AbstractMenu(SlotHolder<H> slotHolder) {
         this.buttons = new HashMap<>();
-        this.minSlot = minSlot;
-        this.maxSlot = maxSlot;
+        this.slotHolder = slotHolder;
     }
 
-    protected void setButton(final int slot, @NotNull final MenuButton button) throws IllegalArgumentException {
+    public void apply(@NotNull V viewer) {
+        boolean isHumanEntity = viewer instanceof HumanEntity;
+        getButtons().forEach((slot, button) -> {
+            if (button instanceof ViewMenuButton vbutton && isHumanEntity) {
+                vbutton.build((HumanEntity) viewer);
+            } else {
+                Bukkit.getLogger().warning("Tried to put VButton ");
+            }
+            slotHolder.setItem(slot, button.icon());
+        });
+    }
+
+    protected void setButton(final int slot, @NotNull final MenuButton button) {
         validateSlot(slot);
         this.buttons.put(slot, button);
     }
 
-    protected MenuButton getButton(final int slot) {
+    @Nullable
+    public MenuButton getButton(final int slot) {
         validateSlot(slot);
         return this.buttons.get(slot);
     }
 
-    protected Map<Integer, MenuButton> getButtons() {
+    /**
+     * Returns a copy of the buttons for the current menu
+     *
+     * @return a copy of the slot button map
+     */
+    protected final Map<Integer, MenuButton> getButtons() {
         return new HashMap<>(this.buttons);
     }
 
-    protected void validateSlot(final int slot) {
-        if (slot < minSlot && slot > maxSlot) {
-            throw new IllegalArgumentException("the given slot could not be validated because the given slot %d is either less than %d or greater than %d".formatted(slot, minSlot, maxSlot));
+    /**
+     * Validates the given slot
+     *
+     * @param slot the slot to validate
+     * @throws IllegalArgumentException thrown if the slot is not valid
+     */
+    private void validateSlot(final int slot) throws IllegalArgumentException {
+        if (slot < slotHolder.getMinIndex() && slot > slotHolder.getMaxIndex()) {
+            throw new IllegalArgumentException("the given slot could not be validated because the given slot %d is either less than %d or greater than %d".formatted(slot, slotHolder.getMinIndex(), slotHolder.getMaxIndex()));
         }
     }
 
     /**
-     * this method should be implemented in order to decorate the inventory. when implementation your decorates you must
-     * ensure the super method is called after all decorations have been added.
+     * The class of the type of viewer who will be viewing this inventory
      *
-     * @param viewer the viewer of the inventory
-     * @implNote if you are extending hte AbstractMenu class you do not have to call the apply method
+     * @return the class of viewer
+     * @implNote if no viewer in specific is targeted you can use the Void class to denote that there is no player
+     * specific aspects to this menu. The Void class indicates that the menu can be cached.
      */
-    protected abstract void apply(@NotNull final V viewer);
+    @NotNull
+    public abstract Class<V> getViewerClass();
+
+    @Override
+    public void handleOpen(@NotNull InventoryOpenEvent event) {
+    }
+
+    @Override
+    public void handleClose(@NotNull InventoryCloseEvent event) {
+    }
 }
