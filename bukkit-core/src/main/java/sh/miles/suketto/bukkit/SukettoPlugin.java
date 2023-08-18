@@ -2,6 +2,7 @@ package sh.miles.suketto.bukkit;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import sh.miles.suketto.bukkit.command.SCommandRegistrar;
+import sh.miles.suketto.bukkit.helpers.YamlConfigHelper;
 import sh.miles.suketto.bukkit.menu.handler.MenuHandlerListener;
 import sh.miles.suketto.bukkit.menu.handler.MenuManager;
 import sh.miles.suketto.bukkit.task.SukettoScheduler;
@@ -16,6 +17,7 @@ public class SukettoPlugin extends JavaPlugin {
     private SukettoScheduler schedulerService;
     private MenuManager menuManager;
     private SCommandRegistrar commandRegistrar;
+    private YamlConfigHelper yamlConfigHelper;
 
     @Override
     public void onEnable() {
@@ -23,8 +25,14 @@ public class SukettoPlugin extends JavaPlugin {
         schedulerService = new SukettoScheduler();
         menuManager = new MenuManager();
         commandRegistrar = new SCommandRegistrar();
+        yamlConfigHelper = new YamlConfigHelper(this);
 
         getServer().getPluginManager().registerEvents(new MenuHandlerListener(menuManager), this);
+    }
+
+    @Override
+    public void onDisable() {
+        schedulerService.shutdownAll();
     }
 
     /**
@@ -63,4 +71,13 @@ public class SukettoPlugin extends JavaPlugin {
         return this.commandRegistrar;
     }
 
+    /**
+     * Retrieves the YamlConfigHelper which is responsible for helping the loading and creation and retrieval of config
+     * files.
+     *
+     * @return the yaml config helper
+     */
+    public YamlConfigHelper getConfigHelper() {
+        return this.yamlConfigHelper;
+    }
 }

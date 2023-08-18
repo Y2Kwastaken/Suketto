@@ -58,7 +58,7 @@ public class MenuManager {
         }
         registerHandler(view.getTopInventory(), menu);
     }
-w
+
     /**
      * Registers a menu handler to a specific inventory
      *

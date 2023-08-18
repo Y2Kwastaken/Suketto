@@ -8,17 +8,24 @@ import sh.miles.suketto.bukkit.chat.translation.replacement.Replacer;
 /**
  * Manages translations for the plugin. A plugin can have multiple translations given that support is added. This class
  * helps manage those translations. All translations are supposed to be in a "messages" config file and each key assumes
- * that the TranslationManager is served a configuration file to use
+ * that the TranslationHolder is served a configuration file to use
  */
-public final class TranslationManager {
+public final class TranslationHolder {
 
     private final FileConfiguration translations;
 
-    public TranslationManager(final FileConfiguration translations) {
+    public TranslationHolder(final FileConfiguration translations) {
         this.translations = translations;
     }
 
-    public SukettoComponent component(@NotNull final String key, @Nullable Replacer... replacers) {
+    /**
+     * Creates a new component from the given translations and replacers
+     *
+     * @param key       the translation key
+     * @param replacers all replacements that must be enforced
+     * @return the SukettoComponent
+     */
+    public SukettoComponent newComponent(@NotNull final String key, @Nullable Replacer... replacers) {
         if (!translations.contains(key)) {
             throw new IllegalArgumentException("the provided key does not exist and therefore a component can not be created for key " + key);
         }

@@ -1,6 +1,5 @@
 package sh.miles.suketto.bukkit.chat.translation;
 
-import net.md_5.bungee.chat.ComponentSerializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sh.miles.suketto.bukkit.chat.BasicMockTest;
@@ -11,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TranslationManagerTest extends BasicMockTest {
 
-    protected TranslationManager tm;
+    protected TranslationHolder tm;
 
     @Override
     @BeforeEach
     public void setup() {
         super.setup();
-        tm = new TranslationManager(plugin.getConfig());
+        tm = new TranslationHolder(plugin.getConfig());
     }
 
     @Test
