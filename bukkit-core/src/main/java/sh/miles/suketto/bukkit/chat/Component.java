@@ -41,6 +41,10 @@ public final class Component {
         resetCursor();
     }
 
+    private Component() {
+        this.parts = new ArrayList<>();
+    }
+
     private Component(@NotNull final ComponentBuilder original) {
         this(original.getParts().toArray(BaseComponent[]::new));
     }
@@ -478,6 +482,10 @@ public final class Component {
 
     public static Component of(@NotNull final BaseComponent[] components) {
         return new Component(components);
+    }
+
+    public static Component empty() {
+        return new Component();
     }
 
     public enum FormatRetention {
