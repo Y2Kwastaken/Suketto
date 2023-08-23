@@ -12,10 +12,16 @@ import sh.miles.suketto.bukkit.menu.AbstractInventoryMenu;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Manages menus
+ */
 public class MenuManager {
 
     private final Map<Inventory, MenuHandler> handlers;
 
+    /**
+     * Creates menu manager
+     */
     public MenuManager() {
         this.handlers = new HashMap<>();
     }
@@ -25,6 +31,7 @@ public class MenuManager {
      *
      * @param menu    the menu to open
      * @param viewers the viewers to open the menu for
+     * @param <V>     viewer type
      */
     @SuppressWarnings("unchecked")
     public final <V> void open(@NotNull final AbstractInventoryMenu<V> menu, @NotNull HumanEntity... viewers) {

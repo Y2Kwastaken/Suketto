@@ -13,7 +13,13 @@ import java.util.function.BiFunction;
  */
 public class Replacer implements BiFunction<String, Object, String> {
 
+    /**
+     * Open char
+     */
     public static final char REPLACE_KEY_START = '{';
+    /**
+     * end char
+     */
     public static final char REPLACE_KEY_END = '}';
     private final String key;
 
@@ -49,6 +55,10 @@ public class Replacer implements BiFunction<String, Object, String> {
         return s.replace(REPLACE_KEY_START + key + REPLACE_KEY_END, o.toString());
     }
 
+    /**
+     * The key to create
+     * @return the string
+     */
     @NotNull
     public String key() {
         return key;
@@ -72,6 +82,11 @@ public class Replacer implements BiFunction<String, Object, String> {
                 "key=" + key + ']';
     }
 
+    /**
+     * Creates replacer from the key
+     * @param key the key
+     * @return the new replacer
+     */
     public static Replacer of(@NotNull final String key) {
         return new Replacer(key);
     }

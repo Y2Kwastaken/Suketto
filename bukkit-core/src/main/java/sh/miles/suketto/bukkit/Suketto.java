@@ -10,6 +10,7 @@ import sh.miles.suketto.bukkit.menu.handler.MenuHandlerListener;
 import sh.miles.suketto.bukkit.menu.handler.MenuManager;
 import sh.miles.suketto.bukkit.task.SukettoScheduler;
 import sh.miles.suketto.bukkit.task.TaskWrapper;
+import sh.miles.suketto.bukkit.task.ticking.MainThreadTicker;
 
 /**
  * Another way to interface with Suketto that does not require extending the SukettoPlugin class
@@ -76,6 +77,18 @@ public final class Suketto {
      */
     public static PluginTranslationManager newPluginTranslationManager(@NotNull final Plugin plugin, @NotNull String fileName, @NotNull final YamlConfigHelper yamlConfigHelper) {
         return new PluginTranslationManager(plugin, "bundle", fileName, yamlConfigHelper);
+    }
+
+    /**
+     * Creates a new plugin MainThreadTicker
+     *
+     * @param plugin the plugin to register the new MainThreadTicker with
+     * @return the main thread ticker
+     */
+    public static MainThreadTicker newMainThreadTicker(@NotNull final Plugin plugin) {
+        final MainThreadTicker ticker = new MainThreadTicker();
+        Bukkit.getScheduler().runTaskTimer(plugin, ticker, 1L, 1L);
+        return ticker;
     }
 
 }

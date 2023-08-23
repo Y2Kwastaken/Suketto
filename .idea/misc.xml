@@ -20,6 +20,7 @@
       <set>
         <option value="$PROJECT_DIR$/api/pom.xml" />
         <option value="$PROJECT_DIR$/bukkit-inventory/pom.xml" />
+        <option value="$PROJECT_DIR$/project-dist/pom.xml" />
         <option value="$PROJECT_DIR$/suketto-api/pom.xml" />
         <option value="$PROJECT_DIR$/suketto-inventory/pom.xml" />
       </set>

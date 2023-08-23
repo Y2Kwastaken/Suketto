@@ -14,6 +14,11 @@ public final class TranslationHolder {
 
     private final FileConfiguration translations;
 
+    /**
+     * Creates a TranslationHolder
+     *
+     * @param translations the file of translations
+     */
     public TranslationHolder(final FileConfiguration translations) {
         this.translations = translations;
     }

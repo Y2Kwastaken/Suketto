@@ -17,6 +17,9 @@ public final class SCommandRegistrar {
     private final CommandMap commandMap;
     private final Map<String, org.bukkit.command.Command> knownCommands;
 
+    /**
+     * Creates SCommandRegistrar
+     */
     @SuppressWarnings("unchecked")
     public SCommandRegistrar() {
         this.commandMap = ReflectionUtils.getField(Bukkit.getPluginManager(), "commandMap", CommandMap.class);
@@ -26,6 +29,7 @@ public final class SCommandRegistrar {
     /**
      * Registers a command to the server by using spigot's internal {@link PluginCommand} class
      *
+     * @param plugin  the plugin to registere the command with
      * @param command the command to register
      */
     public void register(@NotNull final Plugin plugin, @NotNull final SCommand command) {

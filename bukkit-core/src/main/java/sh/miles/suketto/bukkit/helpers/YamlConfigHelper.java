@@ -20,6 +20,10 @@ public class YamlConfigHelper {
 
     private final Plugin plugin;
 
+    /**
+     * Creates a yaml config helper
+     * @param plugin the plugin to use
+     */
     public YamlConfigHelper(final Plugin plugin) {
         this.plugin = plugin;
     }

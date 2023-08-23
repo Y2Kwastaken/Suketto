@@ -26,6 +26,7 @@ public final class Replacement extends Replacer {
 
     /**
      * Applies the given value at the specified key to the given string
+     *
      * @param s the string to apply the replacement to
      * @return the newly modified string
      */
@@ -34,6 +35,11 @@ public final class Replacement extends Replacer {
         return apply(s, value());
     }
 
+    /**
+     * The value of the replacement
+     *
+     * @return the object
+     */
     public Object value() {
         return value;
     }
@@ -45,6 +51,13 @@ public final class Replacement extends Replacer {
                 "value=" + value + ']';
     }
 
+    /**
+     * Creates replacement
+     *
+     * @param key   key
+     * @param value value
+     * @return new replacement
+     */
     public static Replacement of(@NotNull final String key, @NotNull final Object value) {
         return new Replacement(key, value);
     }

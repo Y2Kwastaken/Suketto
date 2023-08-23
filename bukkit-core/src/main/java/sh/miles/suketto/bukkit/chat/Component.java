@@ -16,9 +16,8 @@ import java.util.List;
  * Better component building implementation for BungeeChat ComponentBuilder that rids the use of BaseComponent arrays
  * which are outdated and ineffective. Due to the pending PR I have taken it upon myself to use this feature it may be
  * removed in the future see {@link ComponentBuilder} for a better description of use.
- *
- * @implNote This class will be deprecated for removal in 2 minor versions after the BungeeChat Component Builder build
- * removal.
+ * <p>
+ * This class will be deprecated for removal in 2 minor versions after the BungeeChat Component Builder build removal.
  */
 @SuppressWarnings("deprecation")
 public final class Component {
@@ -57,10 +56,19 @@ public final class Component {
         this(new BaseComponent[]{component});
     }
 
+    /**
+     * Gets parts
+     * @return parts
+     */
     public List<BaseComponent> getParts() {
         return this.parts;
     }
 
+    /**
+     * Gets cursor
+     *
+     * @return cursor
+     */
     public int getCursor() {
         return this.cursor;
     }
@@ -79,8 +87,8 @@ public final class Component {
 
     /**
      * Resets the cursor to index of the last element.
-     *
-     * @implNote for official javadoc {@link ComponentBuilder#resetCursor()}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#resetCursor()}
      */
     public void resetCursor() {
         cursor = parts.size() - 1;
@@ -92,7 +100,8 @@ public final class Component {
      *
      * @param component the component to append
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#append(BaseComponent)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#append(BaseComponent)}
      */
     public Component append(BaseComponent component) {
         return append(component, FormatRetention.ALL);
@@ -105,9 +114,10 @@ public final class Component {
      * @param component the component to append
      * @param retention the formatting to retain
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#append(BaseComponent, ComponentBuilder.FormatRetention)}
-     * this method must use a method handle for BaseComponent#isReset as it is not natively exposed so expect slightly
-     * slower appendages
+     * <p>
+     * for official javadoc {@link ComponentBuilder#append(BaseComponent, ComponentBuilder.FormatRetention)} this method
+     * must use a method handle for BaseComponent#isReset as it is not natively exposed so expect slightly slower
+     * appendages
      */
     public Component append(BaseComponent component, FormatRetention retention) {
         BaseComponent previous = (parts.isEmpty()) ? null : parts.get(parts.size() - 1);
@@ -129,7 +139,8 @@ public final class Component {
      *
      * @param components the components to append
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#append(BaseComponent[])}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#append(BaseComponent[])}
      */
     public Component append(BaseComponent[] components) {
         return append(components, FormatRetention.ALL);
@@ -143,8 +154,8 @@ public final class Component {
      * @param components the components to append
      * @param retention  the formatting to retain
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc
-     * {@link ComponentBuilder#append(BaseComponent[], ComponentBuilder.FormatRetention)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#append(BaseComponent[], ComponentBuilder.FormatRetention)}
      */
     public Component append(BaseComponent[] components, FormatRetention retention) {
         Preconditions.checkArgument(components.length != 0, "No components to append");
@@ -162,7 +173,8 @@ public final class Component {
      *
      * @param text the text to append
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#append(String)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#append(String)}
      */
     public Component append(String text) {
         return append(text, FormatRetention.ALL);
@@ -175,7 +187,8 @@ public final class Component {
      * @param text      the text to append
      * @param retention the formatting to retain
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#append(String, ComponentBuilder.FormatRetention)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#append(String, ComponentBuilder.FormatRetention)}
      */
     public Component append(String text, FormatRetention retention) {
         return append(new TextComponent(text), retention);
@@ -203,8 +216,8 @@ public final class Component {
      * @param joiner    joiner used for operation
      * @param retention the formatting to retain
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc
-     * {@link ComponentBuilder#append(ComponentBuilder.Joiner, ComponentBuilder.FormatRetention)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#append(ComponentBuilder.Joiner, ComponentBuilder.FormatRetention)}
      */
     public Component append(Joiner joiner, FormatRetention retention) {
         return joiner.join(this, retention);
@@ -216,7 +229,8 @@ public final class Component {
      *
      * @param text the text to append
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#appendLegacy(String)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#appendLegacy(String)}
      */
     public Component appendLegacy(String text) {
         return append(TextComponent.fromLegacyText(text));
@@ -228,7 +242,8 @@ public final class Component {
      * @param pos the cursor position synonymous to an element position for a list
      * @return this ComponentBuilder for chaining
      * @throws IndexOutOfBoundsException if the index is out of range ({@code index < 0 || index >= size()})
-     * @implNote for official javadoc {@link ComponentBuilder#setCursor(int)}
+     *                                   <p>
+     *                                   for official javadoc {@link ComponentBuilder#setCursor(int)}
      */
     public Component setCursor(int pos) throws IndexOutOfBoundsException {
         if ((this.cursor != pos) && (pos < 0 || pos >= parts.size())) {
@@ -244,7 +259,8 @@ public final class Component {
      *
      * @param pos the index to remove at
      * @throws IndexOutOfBoundsException if the index is out of range ({@code index < 0 || index >= size()})
-     * @implNote for official javadoc {@link ComponentBuilder#removeComponent(int)}
+     *                                   <p>
+     *                                   for official javadoc {@link ComponentBuilder#removeComponent(int)}
      */
     public void removeComponent(int pos) throws IndexOutOfBoundsException {
         if (parts.remove(pos) != null) {
@@ -258,7 +274,8 @@ public final class Component {
      * @param pos the index to find
      * @return the component
      * @throws IndexOutOfBoundsException if the index is out of range ({@code index < 0 || index >= size()})
-     * @implNote for official javadoc {@link ComponentBuilder#getComponent(int)}
+     *                                   <p>
+     *                                   for official javadoc {@link ComponentBuilder#getComponent(int)}
      */
     public BaseComponent getComponent(int pos) throws IndexOutOfBoundsException {
         return parts.get(pos);
@@ -268,7 +285,8 @@ public final class Component {
      * Gets the component at the position of the cursor.
      *
      * @return the active component or null if builder is empty
-     * @implNote for official javadoc {@link ComponentBuilder#getCurrentComponent()}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#getCurrentComponent()}
      */
     public BaseComponent getCurrentComponent() {
         return (cursor == -1) ? getDummy() : parts.get(cursor);
@@ -279,7 +297,8 @@ public final class Component {
      *
      * @param color the new color
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#color(ChatColor)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#color(ChatColor)}
      */
     public Component color(ChatColor color) {
         getCurrentComponent().setColor(color);
@@ -291,7 +310,8 @@ public final class Component {
      *
      * @param font the new font
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#font(String)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#font(String)}
      */
     public Component font(String font) {
         getCurrentComponent().setFont(font);
@@ -303,7 +323,8 @@ public final class Component {
      *
      * @param bold whether this part is bold
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#bold(boolean)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#bold(boolean)}
      */
     public Component bold(boolean bold) {
         getCurrentComponent().setBold(bold);
@@ -315,7 +336,8 @@ public final class Component {
      *
      * @param italic whether this part is italic
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#italic(boolean)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#italic(boolean)}
      */
     public Component italic(boolean italic) {
         getCurrentComponent().setItalic(italic);
@@ -327,7 +349,8 @@ public final class Component {
      *
      * @param underlined whether this part is underlined
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#underlined(boolean)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#underlined(boolean)}
      */
     public Component underlined(boolean underlined) {
         getCurrentComponent().setUnderlined(underlined);
@@ -339,7 +362,8 @@ public final class Component {
      *
      * @param strikethrough whether this part is strikethrough
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#strikethrough(boolean)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#strikethrough(boolean)}
      */
     public Component strikethrough(boolean strikethrough) {
         getCurrentComponent().setStrikethrough(strikethrough);
@@ -351,7 +375,8 @@ public final class Component {
      *
      * @param obfuscated whether this part is obfuscated
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#obfuscated(boolean)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#obfuscated(boolean)}
      */
     public Component obfuscated(boolean obfuscated) {
         getCurrentComponent().setObfuscated(obfuscated);
@@ -363,7 +388,8 @@ public final class Component {
      *
      * @param insertion the insertion text
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#insertion(String)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#insertion(String)}
      */
     public Component insertion(String insertion) {
         getCurrentComponent().setInsertion(insertion);
@@ -375,7 +401,8 @@ public final class Component {
      *
      * @param clickEvent the click event
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#event(ClickEvent)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#event(ClickEvent)}
      */
     public Component event(ClickEvent clickEvent) {
         getCurrentComponent().setClickEvent(clickEvent);
@@ -387,7 +414,8 @@ public final class Component {
      *
      * @param hoverEvent the hover event
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#event(HoverEvent)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#event(HoverEvent)}
      */
     public Component event(HoverEvent hoverEvent) {
         getCurrentComponent().setHoverEvent(hoverEvent);
@@ -398,7 +426,8 @@ public final class Component {
      * Sets the current part back to normal settings. Only text is kept.
      *
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#reset()}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#reset()}
      */
     public Component reset() {
         return retain(FormatRetention.NONE);
@@ -409,7 +438,8 @@ public final class Component {
      *
      * @param retention the formatting to retain
      * @return this ComponentBuilder for chaining
-     * @implNote for official javadoc {@link ComponentBuilder#retain(ComponentBuilder.FormatRetention)}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#retain(ComponentBuilder.FormatRetention)}
      */
     public Component retain(FormatRetention retention) {
         getCurrentComponent().retain(retention.toBungee());
@@ -439,7 +469,8 @@ public final class Component {
      * which is non-standard and may result in unexpected behavior.
      *
      * @return the created components
-     * @implNote for official javadoc {@link ComponentBuilder#create()}
+     * <p>
+     * for official javadoc {@link ComponentBuilder#create()}
      * @deprecated do not use legacy create method prefer use of {@link Component#build()}
      */
     @Deprecated(forRemoval = true)
@@ -464,30 +495,68 @@ public final class Component {
         return base;
     }
 
+    /**
+     * Turns a non array basecomponent into an array base component
+     *
+     * @param component the component to transition
+     * @return the new array
+     */
     public static BaseComponent[] array(final BaseComponent component) {
         return Component.of(component).create();
     }
 
+    /**
+     * Creates a new Component from a ComponentBuilder
+     *
+     * @param builder the builder
+     * @return the new component
+     */
     public static Component of(@NotNull final ComponentBuilder builder) {
         return new Component(builder);
     }
 
+    /**
+     * Creates a new component from another component
+     *
+     * @param original the original component
+     * @return the new component
+     */
     public static Component of(@NotNull final Component original) {
         return new Component(original);
     }
 
+    /**
+     * Creates a component from a non array base component
+     *
+     * @param component the component to change
+     * @return the new component
+     */
     public static Component of(@NotNull final BaseComponent component) {
         return new Component(component);
     }
 
+    /**
+     * Creates a component from an array of components
+     *
+     * @param components the component to use
+     * @return the new component
+     */
     public static Component of(@NotNull final BaseComponent[] components) {
         return new Component(components);
     }
 
+    /**
+     * Creates an empty component
+     *
+     * @return the new component
+     */
     public static Component empty() {
         return new Component();
     }
 
+    /**
+     * The policy of how to retain format
+     */
     public enum FormatRetention {
 
         /**
@@ -507,6 +576,11 @@ public final class Component {
          */
         ALL;
 
+        /**
+         * Gets a bungee equivalent of the FormatRetention
+         *
+         * @return the bungee equivalent
+         */
         public ComponentBuilder.FormatRetention toBungee() {
             return ComponentBuilder.FormatRetention.valueOf(name());
         }

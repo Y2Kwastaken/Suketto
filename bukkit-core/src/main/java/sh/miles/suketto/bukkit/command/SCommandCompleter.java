@@ -12,6 +12,12 @@ import java.util.List;
 @FunctionalInterface
 public interface SCommandCompleter {
 
+    /**
+     * Completes tab completes
+     * @param sender the sender to complete
+     * @param args the args
+     * @return the list string
+     */
     List<String> complete(@NotNull final CommandSender sender, @NotNull final String[] args);
 
 }

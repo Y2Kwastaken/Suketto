@@ -21,9 +21,9 @@ public class TranslationManagerTest extends BasicMockTest {
 
     @Test
     public void testMakeComponent() {
-        final SukettoComponent component = tm.component("test");
+        final SukettoComponent component = tm.newComponent("test");
         assertNotNull(component);
-        final SukettoComponent componentValued = tm.component("test-valued", Replacer.of("value"));
+        final SukettoComponent componentValued = tm.newComponent("test-valued", Replacer.of("value"));
         assertNotNull(componentValued);
         assertNotEquals(componentValued.get(Replacement.of("value", 5)), componentValued.get(Replacement.of("value", 4)));
     }

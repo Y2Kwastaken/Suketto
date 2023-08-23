@@ -19,6 +19,13 @@ public class PluginTranslationManager {
     private final YamlConfigHelper configHelper;
     private TranslationHolder holder;
 
+    /**
+     * Plugin translatoin manager
+     * @param plugin the plugin
+     * @param bundleFolder bundle folder
+     * @param translationFile translation file name
+     * @param configHelper config helper
+     */
     public PluginTranslationManager(@NotNull final Plugin plugin, final String bundleFolder, final String translationFile, final YamlConfigHelper configHelper) {
         this.localePath = bundleFolder + File.separator + "%s" + translationFile;
         this.configHelper = configHelper;

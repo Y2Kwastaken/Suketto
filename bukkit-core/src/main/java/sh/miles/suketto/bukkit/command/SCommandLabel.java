@@ -11,6 +11,9 @@ import java.util.List;
  */
 public final class SCommandLabel {
 
+    /**
+     * Default description of the label
+     */
     public static final String DEFAULT_DESCRIPTION = "A Command created with Suketto";
 
     private final String name;
@@ -18,6 +21,14 @@ public final class SCommandLabel {
     private final String description;
     private final List<String> aliases;
 
+    /**
+     * The command label
+     *
+     * @param name        the name of the command
+     * @param permission  the permission of the command
+     * @param description the description of the command
+     * @param aliases     the aliases of the command
+     */
     public SCommandLabel(@NotNull final String name, @NotNull final String permission, @NotNull final String description, List<String> aliases) {
         Preconditions.checkNotNull(name);
         Preconditions.checkNotNull(permission);
@@ -30,10 +41,21 @@ public final class SCommandLabel {
         this.aliases = aliases;
     }
 
+    /**
+     * Creates SCommandLabel
+     * @param name name
+     * @param permission permission
+     * @param description description
+     */
     public SCommandLabel(@NotNull final String name, @NotNull final String permission, @NotNull final String description) {
         this(name, permission, description, new ArrayList<>());
     }
 
+    /**
+     * Creates SCommandLabel
+     * @param name name
+     * @param permission permission
+     */
     public SCommandLabel(@NotNull final String name, @NotNull final String permission) {
         this(name, permission, DEFAULT_DESCRIPTION);
     }

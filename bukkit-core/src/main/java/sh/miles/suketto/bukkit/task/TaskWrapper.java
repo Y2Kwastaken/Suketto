@@ -15,6 +15,10 @@ public class TaskWrapper {
 
     private final Plugin plugin;
 
+    /**
+     * Creates a task wrapper
+     * @param plugin the plugin
+     */
     public TaskWrapper(final Plugin plugin) {
         this.plugin = plugin;
     }

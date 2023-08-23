@@ -32,5 +32,10 @@ public interface MenuHandler {
      */
     void handleClose(@NotNull final InventoryCloseEvent event);
 
+    /**
+     * Opens the menu
+     *
+     * @param entity the entity opening the menu
+     */
     void open(@NotNull final HumanEntity entity);
 }

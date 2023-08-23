@@ -32,6 +32,12 @@ public class SukettoComponent {
         this.replacers = Stream.of(replacers).collect(Collectors.toSet());
     }
 
+    /**
+     * gets the base component from replacements
+     *
+     * @param replacements the replacements
+     * @return the base component`
+     */
     public BaseComponent get(Replacement... replacements) {
         if (replacements.length > replacers.size()) {
             Bukkit.getLogger().info("A length of replacements is greater than the possible replacers in the string \"%s\"".formatted(raw));
@@ -51,6 +57,10 @@ public class SukettoComponent {
         return Component.unarray(MineDown.parse(str));
     }
 
+    /**
+     * gets translatoin
+     * @return BaseComponent
+     */
     public BaseComponent get() {
         if (!replacers.isEmpty()) {
             throw new IllegalArgumentException("The translate method cannot be invoked successfully unless all replacements are fulfilled");

@@ -16,10 +16,16 @@ import java.util.function.Consumer;
  */
 public interface MessageGroup<T extends CommandSender> {
 
+    /**
+     * Group for all messagers that can read
+     */
     MessageGroup<CommandSender> GLOBAL_GROUP = (action) -> {
         Bukkit.getOnlinePlayers().iterator().forEachRemaining(action);
         action.accept(Bukkit.getServer().getConsoleSender());
     };
+    /**
+     * Group for all players
+     */
     MessageGroup<Player> PLAYER_GROUP = (action) -> Bukkit.getOnlinePlayers().iterator().forEachRemaining(action);
 
     /**

@@ -11,10 +11,21 @@ import sh.miles.suketto.bukkit.menu.button.MenuButton;
 import sh.miles.suketto.bukkit.menu.holder.SlotHolder;
 import sh.miles.suketto.minecraft.VersionHandle;
 
+/**
+ * An abstract inventory implementation of AbstractMenu intended for use with bukkit inventories
+ *
+ * @param <V> the Viewer type
+ */
 public abstract class AbstractInventoryMenu<V> extends AbstractMenu<Inventory, V> {
 
     private final BaseComponent title;
 
+    /**
+     * Creates AbstractInventory menu
+     *
+     * @param inventory inventory to use
+     * @param title     title to use
+     */
     protected AbstractInventoryMenu(@NotNull final Inventory inventory, @NotNull final BaseComponent title) {
         super(SlotHolder.of(inventory));
         this.title = title;

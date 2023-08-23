@@ -86,6 +86,14 @@ public class Tuple<A, B> {
         return "Tuple{" + "first=" + first + ", second=" + second + '}';
     }
 
+    /**
+     * Creates a new tuple
+     * @param a the first element
+     * @param b the second element
+     * @return the newly created tuple
+     * @param <A> type A
+     * @param <B> type B
+     */
     public static <A, B> Tuple<A, B> of(A a, B b) {
         return new Tuple<>(a, b);
     }

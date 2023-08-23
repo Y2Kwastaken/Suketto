@@ -23,14 +23,27 @@ import java.util.Map;
 public abstract class AbstractMenu<H, V> implements MenuHandler {
 
     private final Map<Integer, MenuButton> buttons;
+    /**
+     * the slot holder of this menu
+     */
     protected final SlotHolder<H> slotHolder;
 
+    /**
+     * Creates a new AbstractMenu
+     *
+     * @param slotHolder the slot holder
+     */
     protected AbstractMenu(SlotHolder<H> slotHolder) {
         this.buttons = new HashMap<>();
         this.slotHolder = slotHolder;
     }
 
-    public void apply(@NotNull V viewer) {
+    /**
+     * Applies the styling to the given inventory
+     *
+     * @param viewer the view to apply the styling for
+     */
+    public void apply(V viewer) {
         boolean isHumanEntity = viewer instanceof HumanEntity;
         getButtons().forEach((slot, button) -> {
             if (button instanceof ViewMenuButton vbutton && isHumanEntity) {
@@ -42,11 +55,23 @@ public abstract class AbstractMenu<H, V> implements MenuHandler {
         });
     }
 
+    /**
+     * Sets a menu button
+     *
+     * @param slot   the slot
+     * @param button the button to set
+     */
     protected void setButton(final int slot, @NotNull final MenuButton button) {
         validateSlot(slot);
         this.buttons.put(slot, button);
     }
 
+    /**
+     * Gets a menu button
+     *
+     * @param slot the slot to get it from
+     * @return the menu button other wise null
+     */
     @Nullable
     public MenuButton getButton(final int slot) {
         validateSlot(slot);
@@ -62,6 +87,11 @@ public abstract class AbstractMenu<H, V> implements MenuHandler {
         return new HashMap<>(this.buttons);
     }
 
+    /**
+     * Gets hte slot holder
+     *
+     * @return the slot holder
+     */
     public SlotHolder<H> getSlotHolder() {
         return this.slotHolder;
     }
@@ -82,8 +112,9 @@ public abstract class AbstractMenu<H, V> implements MenuHandler {
      * The class of the type of viewer who will be viewing this inventory
      *
      * @return the class of viewer
-     * @implNote if no viewer in specific is targeted you can use the Void class to denote that there is no player
-     * specific aspects to this menu. The Void class indicates that the menu can be cached.
+     * <p>
+     * if no viewer in specific is targeted you can use the Void class to denote that there is no player specific
+     * aspects to this menu. The Void class indicates that the menu can be cached.
      */
     @NotNull
     public abstract Class<V> getViewerClass();

@@ -11,11 +11,21 @@ import sh.miles.suketto.bukkit.menu.button.ViewMenuButton;
 import sh.miles.suketto.bukkit.menu.holder.SlotHolder;
 import sh.miles.suketto.nms.container.SukettoContainer;
 
+/**
+ * An AbstractContainerMenu is an abstract implementation of the base AbstractMenu intended for SukettoContainer's
+ *
+ * @param <V> the Viewer type
+ */
 @NMS
 public abstract class AbstractContainerMenu<V extends HumanEntity> extends AbstractMenu<SukettoContainer, V> {
 
     private InventoryView activeView;
 
+    /**
+     * Creates abstract menu container
+     *
+     * @param container container to use
+     */
     public AbstractContainerMenu(@NotNull final SukettoContainer container) {
         super(SlotHolder.of(container));
     }
@@ -56,6 +66,11 @@ public abstract class AbstractContainerMenu<V extends HumanEntity> extends Abstr
         this.activeView = slotHolder.getHolder().open(entity);
     }
 
+    /**
+     * Gets the active view of the menu
+     *
+     * @return the active view
+     */
     public InventoryView getActiveView() {
         return this.activeView;
     }

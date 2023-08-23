@@ -7,6 +7,9 @@ import net.md_5.bungee.api.chat.BaseComponent;
 
 import java.lang.reflect.Field;
 
+/**
+ * ComponentSerializer
+ */
 public class ComponentSerializer extends net.md_5.bungee.chat.ComponentSerializer {
 
     private static final Gson gson;

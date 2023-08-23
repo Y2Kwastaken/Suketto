@@ -19,6 +19,9 @@ public class SukettoScheduler {
 
     private final ScheduledExecutorService service;
 
+    /**
+     * Creates new suketto scheduler
+     */
     public SukettoScheduler() {
         service = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
     }
@@ -51,11 +54,17 @@ public class SukettoScheduler {
      * @param delay    the delay
      * @param period   the period
      * @param unit     the unit
+     * @return the scheduled future
      */
     public ScheduledFuture<?> scheduleAtFixedRate(@NotNull final Runnable runnable, final long delay, final long period, @NotNull final TimeUnit unit) {
         return service.scheduleAtFixedRate(runnable, delay, period, unit);
     }
 
+    /**
+     * Shut down all tasks
+     *
+     * @return a list of all tasks
+     */
     public List<Runnable> shutdownAll() {
         return service.shutdownNow();
     }

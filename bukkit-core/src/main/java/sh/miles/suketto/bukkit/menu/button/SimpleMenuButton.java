@@ -21,22 +21,45 @@ public class SimpleMenuButton implements MenuButton {
 
     private Supplier<ItemStack> icon = () -> new ItemStack(Material.AIR);
 
+    /**
+     * New SimpleMenuButton
+     */
     public SimpleMenuButton() {
     }
 
+    /**
+     * Sets the click event
+     *
+     * @param click the click event to set
+     */
     public void setClick(Consumer<InventoryClickEvent> click) {
         this.click = click;
     }
 
+    /**
+     * Sets the icon
+     *
+     * @param icon the icon to set
+     */
     public void setIcon(Supplier<ItemStack> icon) {
         this.icon = icon;
     }
 
+    /**
+     * executes the click
+     *
+     * @param event the Fevent
+     */
     @Override
     public void click(@NotNull InventoryClickEvent event) {
         click.accept(event);
     }
 
+    /**
+     * Gets the icon
+     *
+     * @return the item stack
+     */
     @Override
     public ItemStack icon() {
         return icon.get();

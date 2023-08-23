@@ -20,8 +20,17 @@ public class SCommand implements SCommandExecutor, SCommandCompleter {
     private final SCommandSettings.Settings settings;
     private final Map<String, SCommand> subcommands;
 
+    /**
+     * Default NoArgs Executor
+     */
     protected BiFunction<CommandSender, String[], Boolean> noArgExecutor = (s, a) -> true;
 
+    /**
+     * Creates SCommand
+     *
+     * @param label    label
+     * @param settings settings
+     */
     public SCommand(@NotNull final SCommandLabel label, @NotNull final SCommandSettings.Settings settings) {
         Preconditions.checkNotNull(label);
         Preconditions.checkNotNull(settings);
@@ -31,6 +40,11 @@ public class SCommand implements SCommandExecutor, SCommandCompleter {
         this.subcommands = new HashMap<>();
     }
 
+    /**
+     * Creates SCommand
+     *
+     * @param label label
+     */
     public SCommand(@NotNull final SCommandLabel label) {
         this(label, SCommandSettings.DEFAULT_COMMAND_SETTINGS);
     }
@@ -89,6 +103,11 @@ public class SCommand implements SCommandExecutor, SCommandCompleter {
         this.subcommands.put(command.getCommandLabel().getName(), command);
     }
 
+    /**
+     * The command label
+     *
+     * @return command label
+     */
     @NotNull
     public SCommandLabel getCommandLabel() {
         return this.label;

@@ -1,5 +1,7 @@
 package sh.miles.suketto.bukkit;
 
+import com.sun.tools.javac.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import sh.miles.suketto.bukkit.command.SCommandRegistrar;
 import sh.miles.suketto.bukkit.helpers.YamlConfigHelper;
@@ -7,6 +9,7 @@ import sh.miles.suketto.bukkit.menu.handler.MenuHandlerListener;
 import sh.miles.suketto.bukkit.menu.handler.MenuManager;
 import sh.miles.suketto.bukkit.task.SukettoScheduler;
 import sh.miles.suketto.bukkit.task.TaskWrapper;
+import sh.miles.suketto.bukkit.task.ticking.MainThreadTicker;
 
 /**
  * A base plugin class that should be extended when wanting to use the Suketto Library
@@ -18,6 +21,7 @@ public class SukettoPlugin extends JavaPlugin {
     private MenuManager menuManager;
     private SCommandRegistrar commandRegistrar;
     private YamlConfigHelper yamlConfigHelper;
+    private MainThreadTicker ticker;
 
     @Override
     public void onEnable() {
@@ -26,8 +30,10 @@ public class SukettoPlugin extends JavaPlugin {
         menuManager = new MenuManager();
         commandRegistrar = new SCommandRegistrar();
         yamlConfigHelper = new YamlConfigHelper(this);
+        ticker = new MainThreadTicker();
 
         getServer().getPluginManager().registerEvents(new MenuHandlerListener(menuManager), this);
+        Bukkit.getScheduler().runTaskTimer(this, ticker, 1L, 1L);
     }
 
     @Override
@@ -79,5 +85,16 @@ public class SukettoPlugin extends JavaPlugin {
      */
     public YamlConfigHelper getConfigHelper() {
         return this.yamlConfigHelper;
+    }
+
+    /**
+     * Retrieves the MainThreadTicker which is responsible for queuing up  possible heavy tasks on the main thread in
+     * small individual pieces in order to not cause otherwise unnecessary strain on the servers main thread which could
+     * cause freezing and tps drops
+     *
+     * @return the main thread ticker
+     */
+    public MainThreadTicker getTicker() {
+        return this.ticker;
     }
 }

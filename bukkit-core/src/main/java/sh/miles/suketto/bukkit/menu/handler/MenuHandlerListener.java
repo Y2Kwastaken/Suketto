@@ -19,15 +19,28 @@ public class MenuHandlerListener implements Listener {
 
     private final MenuManager manager;
 
+    /**
+     * Creates a menu handler lister
+     *
+     * @param manager the manager to use
+     */
     public MenuHandlerListener(@NotNull final MenuManager manager) {
         this.manager = manager;
     }
 
+    /**
+     * Click event
+     * @param event event
+     */
     @EventHandler
     public void onClick(@NotNull InventoryClickEvent event) {
         onEvent(event, (h) -> h.handleClick(event));
     }
 
+    /**
+     * Open Event
+     * @param event event
+     */
     @EventHandler
     public void onOpen(@NotNull InventoryOpenEvent event) {
         onEvent(event, (h) -> h.handleOpen(event));

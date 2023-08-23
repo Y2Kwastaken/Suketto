@@ -14,6 +14,11 @@ public class SimpleMessageGroup implements MessageGroup<Player> {
 
     private final List<UUID> uuids;
 
+    /**
+     * Creates a simple message group
+     *
+     * @param uuids the uuids of the group
+     */
     public SimpleMessageGroup(final List<UUID> uuids) {
         this.uuids = uuids;
     }

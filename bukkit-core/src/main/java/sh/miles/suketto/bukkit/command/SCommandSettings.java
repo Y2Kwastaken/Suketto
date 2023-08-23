@@ -47,10 +47,20 @@ public class SCommandSettings {
         return new Settings(permissionMessage, invalidSenderMessage);
     }
 
+    /**
+     * Gets default permission
+     *
+     * @return the component
+     */
     public static BaseComponent getDefaultPermissionMessage() {
         return DEFAULT_PERMISSION_MESSAGE.duplicate();
     }
 
+    /**
+     * Gets default invalid sender
+     *
+     * @return the base component
+     */
     public static BaseComponent getDefaultInvalidSenderMessage() {
         return DEFAULT_INVALID_SENDER_MESSAGE.duplicate();
     }
@@ -63,12 +73,22 @@ public class SCommandSettings {
      */
     public record Settings(BaseComponent permissionMessage, BaseComponent invalidSenderMessage) {
 
+        /**
+         * Sends the permission message
+         *
+         * @param sender the sender
+         */
         public void sendPermissionMessage(CommandSender sender) {
             if (permissionMessage != null) {
                 sender.spigot().sendMessage(permissionMessage);
             }
         }
 
+        /**
+         * sends the invalid sender message
+         *
+         * @param sender the sender
+         */
         public void sendInvalidSenderMessage(CommandSender sender) {
             if (invalidSenderMessage != null) {
                 sender.spigot().sendMessage(invalidSenderMessage);

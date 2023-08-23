@@ -12,6 +12,12 @@ import sh.miles.suketto.bukkit.menu.AbstractInventoryMenu;
  */
 public class SimpleInventoryMenu extends AbstractInventoryMenu<Player> {
 
+    /**
+     * Creates a SimpleInventoryMenu
+     *
+     * @param title title
+     * @param size  size
+     */
     public SimpleInventoryMenu(@NotNull BaseComponent title, final int size) {
         super(Bukkit.createInventory(null, size, ComponentSerializer.toString(title)), title);
     }

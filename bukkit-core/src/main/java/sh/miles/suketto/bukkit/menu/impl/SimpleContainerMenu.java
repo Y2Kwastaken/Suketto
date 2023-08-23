@@ -14,6 +14,12 @@ import sh.miles.suketto.nms.container.SukettoContainerType;
 @NMS
 public class SimpleContainerMenu extends AbstractContainerMenu<Player> {
 
+    /**
+     * Creates a simple ContainerMenu
+     *
+     * @param title the title
+     * @param type  the type
+     */
     public SimpleContainerMenu(@NotNull final BaseComponent title, @NotNull final SukettoContainerType type) {
         super(VersionHandle.CONTAINER.createContainer(title, type));
     }

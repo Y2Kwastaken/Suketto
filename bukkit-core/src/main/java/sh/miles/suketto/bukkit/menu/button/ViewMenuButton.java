@@ -1,24 +1,31 @@
 package sh.miles.suketto.bukkit.menu.button;
 
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+/**
+ * the ViewMenuButton is an extension of a SimpleMenu button which supports using the player in the Icon
+ */
 public class ViewMenuButton extends SimpleMenuButton {
 
     private Function<HumanEntity, ItemStack> icon;
 
+    /**
+     * Creates a view menu button
+     */
     public ViewMenuButton() {
         super();
     }
 
+    /**
+     * sets the icon
+     *
+     * @param icon icon function
+     */
     public void setIcon(@NotNull final Function<HumanEntity, ItemStack> icon) {
         this.icon = icon;
     }

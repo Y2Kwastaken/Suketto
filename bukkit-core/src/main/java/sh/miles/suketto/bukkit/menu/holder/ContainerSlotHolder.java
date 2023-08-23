@@ -4,6 +4,9 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import sh.miles.suketto.nms.container.SukettoContainer;
 
+/**
+ * The slot holder implementation for a Container
+ */
 public class ContainerSlotHolder implements SlotHolder<SukettoContainer> {
 
     private final SukettoContainer container;
