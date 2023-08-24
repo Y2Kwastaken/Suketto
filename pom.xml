@@ -33,9 +33,7 @@
         <mojo-versions-maven-plugin.version>2.16.0</mojo-versions-maven-plugin.version>
 
         <!-- Dependency Versioning -->
-        <junit.version>4.13.2</junit.version>
-        <junit-vintage-engine.version>5.10.0</junit-vintage-engine.version>
-
+        <junit.version>5.6.0</junit.version>
 
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -44,15 +42,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit-vintage-engine.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
