@@ -35,6 +35,9 @@ public class WeightedList<E> implements WeightedCollection<E> {
         this.total = total;
     }
 
+    /**
+     * Creates a new weighted list
+     */
     public WeightedList() {
         this(new TreeMap<>(), new SecureRandom(SecureRandom.getSeed(96)), 0);
     }
@@ -59,7 +62,7 @@ public class WeightedList<E> implements WeightedCollection<E> {
     @Override
     public Collection<E> next(final int rolls) {
         final List<E> list = new ArrayList<>();
-        for(int i = 0; i < rolls; i++){
+        for (int i = 0; i < rolls; i++) {
             list.add(next());
         }
 

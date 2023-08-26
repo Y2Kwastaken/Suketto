@@ -3,16 +3,30 @@ package sh.miles.suketto.core.utils;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import sh.miles.suketto.core.function.ThrowingFunction;
+import sh.miles.suketto.core.function.ThrowingSupplier;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Provides a handful of utilities for reflection
  */
 public final class ReflectionUtils {
+
+    private static final MethodHandles.Lookup lookup;
+
+    static {
+        lookup = MethodHandles.lookup();
+    }
 
     /**
      * Utility class
@@ -33,7 +47,7 @@ public final class ReflectionUtils {
         Objects.requireNonNull(params);
 
         try {
-            final Constructor<T> constructor = clazz.getConstructor(classesFromParameters(params));
+            final Constructor<T> constructor = clazz.getDeclaredConstructor(classesFromParameters(params));
             constructor.setAccessible(true);
             final T instance = constructor.newInstance(params);
             constructor.setAccessible(false);
@@ -133,6 +147,88 @@ public final class ReflectionUtils {
         }
 
         return clazzes;
+    }
+
+    /**
+     * Uses the MethodHandle API to get a constructor from the provided class with the provided parameters
+     *
+     * @param clazz      the class to get the constructor from
+     * @param parameters the parameters
+     * @return the method handle
+     */
+    public static MethodHandle getConstructor(Class<?> clazz, Class<?>[] parameters) {
+        try {
+            final Constructor<?> constructor = clazz.getDeclaredConstructor(parameters);
+            return accessAndReturn(constructor, () -> lookup.unreflectConstructor(constructor));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Uses the MethodHandle API to get a method from the provided class with the provided name and params
+     *
+     * @param clazz      the class to get the method from
+     * @param methodName the method name
+     * @param parameters the parameters of the method
+     * @return the method handle
+     */
+    public static MethodHandle getMethod(Class<?> clazz, String methodName, Class<?>[] parameters) {
+        try {
+            final Method method = clazz.getDeclaredMethod(methodName, parameters);
+            return accessAndReturn(method, () -> lookup.unreflect(method));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    /**
+     * Uses the MethodHandle API to get the MethodHandle attached the provided field getter on the given class
+     *
+     * @param clazz     the class to get the field from
+     * @param fieldName the field name
+     * @return the method handle associated with the class and field
+     */
+    public static MethodHandle getFieldAsGetter(Class<?> clazz, String fieldName) {
+        try {
+            final Field field = clazz.getDeclaredField(fieldName);
+            return accessAndReturn(field, () -> lookup.unreflectGetter(field));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Uses the MethodHandle API to get the MethodHandle attached to the provided field setter on a given class
+     *
+     * @param clazz     the class to get the field from
+     * @param fieldName the field name
+     * @return the method handle associated with the class and field
+     */
+    public static MethodHandle getFieldAsSetter(Class<?> clazz, String fieldName) {
+        try {
+            final Field field = clazz.getDeclaredField(fieldName);
+            return accessAndReturn(field, () -> lookup.unreflectSetter(field));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Sets the given accessible object accessible and then returns the result of hte provided function
+     *
+     * @param accessibleObject the accessible object
+     * @param function         the function
+     * @param <T>              the type T
+     * @param <R>              the type R
+     * @return the return type of the provided function
+     */
+    private static <T extends AccessibleObject, R> R accessAndReturn(T accessibleObject, ThrowingSupplier<R> function) throws Exception {
+        accessibleObject.setAccessible(true);
+        final R result = function.get();
+        accessibleObject.setAccessible(false);
+        return result;
     }
 
 

@@ -28,7 +28,7 @@ public class ComponentTest {
         final String legacyJson = ComponentSerializer.toString(complexTestLegacy);
         final String newJson = ComponentSerializer.toString(complexTestNew);
 
-        assertEquals("legacy and new should be the same", legacyJson, newJson);
+        assertEquals(legacyJson, newJson, "legacy and new should be the same");
     }
 
 
