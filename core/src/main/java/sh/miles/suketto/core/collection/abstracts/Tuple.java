@@ -1,6 +1,7 @@
 package sh.miles.suketto.core.collection.abstracts;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
@@ -22,7 +23,7 @@ public class Tuple<A, B> {
      * @param first  The first item in the tuple.
      * @param second The second item in the tuple.
      */
-    public Tuple(@NotNull final A first, @NotNull final B second) {
+    public Tuple(@Nullable final A first, @Nullable final B second) {
         this.first = first;
         this.second = second;
     }
@@ -32,7 +33,7 @@ public class Tuple<A, B> {
      *
      * @return the object contained in the first position of the tuple.
      */
-    @NotNull
+    @Nullable
     public A getFirst() {
         return this.first;
     }
@@ -42,7 +43,7 @@ public class Tuple<A, B> {
      *
      * @return the object contained in the second position of the tuple.fzx
      */
-    @NotNull
+    @Nullable
     public B getSecond() {
         return this.second;
     }
