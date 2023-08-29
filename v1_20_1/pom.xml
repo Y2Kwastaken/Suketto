@@ -28,7 +28,7 @@
             <classifier>remapped-mojang</classifier>
         </dependency>
         <dependency>
-            <groupId>sh.miles</groupId>
+            <groupId>sh.miles.suketto</groupId>
             <artifactId>nms-api</artifactId>
             <version>${project.version}</version>
         </dependency>

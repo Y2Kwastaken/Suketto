@@ -36,6 +36,16 @@
         </dependency>
 
         <dependency>
+            <groupId>sh.miles.suketto</groupId>
+            <artifactId>nms-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>sh.miles.suketto</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.20.1-R0.1-SNAPSHOT</version>
@@ -46,16 +56,6 @@
             <artifactId>minedown</artifactId>
             <version>1.7.1-SNAPSHOT</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>sh.miles</groupId>
-            <artifactId>nms-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>sh.miles</groupId>
-            <artifactId>core</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
