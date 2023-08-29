@@ -40,3 +40,5 @@ build/
 
 ## OTHER BUILD FILES ##
 *.versionsBackup
+
+dist/dependency-reduced-pom.xml
