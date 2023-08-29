@@ -20,7 +20,7 @@ public class TranslationManagerTest extends BasicMockTest {
     }
 
     @Test
-    public void testMakeComponent() {
+    public void should_Make_Component() {
         final SukettoComponent component = tm.newComponent("test");
         assertNotNull(component);
         final SukettoComponent componentValued = tm.newComponent("test-valued", Replacer.of("value"));
@@ -28,4 +28,9 @@ public class TranslationManagerTest extends BasicMockTest {
         assertNotEquals(componentValued.get(Replacement.of("value", 5)), componentValued.get(Replacement.of("value", 4)));
     }
 
+    @Test
+    public void should_Get_Nested_Value() {
+        final SukettoComponent component = tm.newComponent("nested.test");
+        assertNotNull(component);
+    }
 }
