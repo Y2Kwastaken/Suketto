@@ -45,6 +45,7 @@ public abstract class AbstractContainerMenu<V extends HumanEntity> extends Abstr
         if (!event.getInventory().equals(activeView.getTopInventory())) {
             return;
         }
+        event.setCancelled(true);
 
         final int slot = event.getSlot();
         final MenuButton button = getButton(slot);

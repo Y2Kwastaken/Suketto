@@ -1,5 +1,6 @@
 package sh.miles.suketto.bukkit.menu.handler;
 
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -30,6 +31,7 @@ public class MenuHandlerListener implements Listener {
 
     /**
      * Click event
+     *
      * @param event event
      */
     @EventHandler
@@ -39,6 +41,7 @@ public class MenuHandlerListener implements Listener {
 
     /**
      * Open Event
+     *
      * @param event event
      */
     @EventHandler
@@ -61,6 +64,7 @@ public class MenuHandlerListener implements Listener {
         if (handler == null) {
             return;
         }
+
         action.accept(handler);
     }
 }

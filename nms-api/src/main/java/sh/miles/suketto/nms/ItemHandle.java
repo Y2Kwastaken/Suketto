@@ -18,8 +18,9 @@ public interface ItemHandle {
      *
      * @param item the item to set the name of
      * @param name the name of the item
+     * @return The ItemStack with the applied name
      */
-    void setName(@NotNull final ItemStack item, @NotNull final BaseComponent name);
+    ItemStack setName(@NotNull final ItemStack item, @NotNull final BaseComponent name);
 
     /**
      * Gets the item name as the provided component
@@ -35,8 +36,9 @@ public interface ItemHandle {
      *
      * @param item the item to set the lore of
      * @param lore the lore to set on the item
+     * @return the ItemStack with the applied lore
      */
-    void setLore(@NotNull final ItemStack item, @NotNull final List<BaseComponent> lore);
+    ItemStack setLore(@NotNull final ItemStack item, @NotNull final List<BaseComponent> lore);
 
     /**
      * Gets hte lore on the item or an empty list if there is none

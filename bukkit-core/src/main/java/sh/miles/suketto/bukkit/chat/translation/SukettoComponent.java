@@ -46,8 +46,6 @@ public class SukettoComponent {
         String str = raw;
         for (Replacement replacement : replacements) {
             if (!replacers.contains(replacement)) {
-                System.out.println(replacers);
-                System.out.println(replacement);
                 throw new IllegalArgumentException("The provided replacement could not be found within this component");
             }
 
@@ -58,7 +56,7 @@ public class SukettoComponent {
     }
 
     /**
-     * gets translatoin
+     * gets translation
      * @return BaseComponent
      */
     public BaseComponent get() {

@@ -1,5 +1,6 @@
 package sh.miles.suketto.bukkit.menu.holder;
 
+import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -33,5 +34,10 @@ public class InventorySlotHolder implements SlotHolder<Inventory> {
     @Override
     public int getMinIndex() {
         return 0;
+    }
+
+    @Override
+    public boolean hasItemAt(int index) {
+        return inventory.getItem(index) != null && inventory.getItem(index).getType() != Material.AIR;
     }
 }

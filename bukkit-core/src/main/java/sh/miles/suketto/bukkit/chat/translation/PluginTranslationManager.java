@@ -10,7 +10,7 @@ import sh.miles.suketto.bukkit.helpers.YamlConfigHelper;
 import java.io.File;
 
 /**
- * Handles translations for the entire plugin. Note, translations for this implementation are not on a per player basis
+ * Handles translations for the entire plugin. Note, translations for this implementation are not on a per-player basis
  * and are based on the entire plugin.
  */
 public class PluginTranslationManager {
@@ -21,13 +21,14 @@ public class PluginTranslationManager {
 
     /**
      * Plugin translatoin manager
-     * @param plugin the plugin
-     * @param bundleFolder bundle folder
+     *
+     * @param plugin          the plugin
+     * @param bundleFolder    bundle folder
      * @param translationFile translation file name
-     * @param configHelper config helper
+     * @param configHelper    config helper
      */
     public PluginTranslationManager(@NotNull final Plugin plugin, final String bundleFolder, final String translationFile, final YamlConfigHelper configHelper) {
-        this.localePath = bundleFolder + File.separator + "%s" + translationFile;
+        this.localePath = bundleFolder + File.separator + "%s" + File.separator + translationFile;
         this.configHelper = configHelper;
     }
 
@@ -38,7 +39,7 @@ public class PluginTranslationManager {
      */
     public void loadLocale(final String locale) {
         final String path = localePath.formatted(locale);
-        this.holder = new TranslationHolder(configHelper.getYamlFile(locale));
+        this.holder = new TranslationHolder(configHelper.getYamlFile(path));
     }
 
     /**
@@ -62,6 +63,20 @@ public class PluginTranslationManager {
     public SukettoComponent newComponent(@NotNull final String key, @Nullable Replacer... replacers) {
         Preconditions.checkNotNull(this.holder);
         return this.holder.newComponent(key, replacers);
+    }
+
+    /**
+     * Creates a new component from the given translations and replacers. Note this method is also contained with
+     * TranslationHolder, but automatically uses the current holder
+     *
+     * @param key       the translation key
+     * @param replacers all replacements that must be enforced
+     * @return the SukettoComponent
+     * @throws IllegalArgumentException if a translation holder was not yet loaded
+     */
+    public SukettoComponentStack newComponentStack(@NotNull final String key, @Nullable Replacer... replacers) {
+        Preconditions.checkNotNull(this.holder);
+        return this.holder.newComponentStack(key, replacers);
     }
 
 }

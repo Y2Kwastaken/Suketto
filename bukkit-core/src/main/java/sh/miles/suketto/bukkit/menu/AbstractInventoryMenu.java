@@ -36,6 +36,7 @@ public abstract class AbstractInventoryMenu<V> extends AbstractMenu<Inventory, V
         if (!event.getInventory().equals(slotHolder.getHolder())) {
             return;
         }
+        event.setCancelled(true);
 
         final int slot = event.getSlot();
         final MenuButton button = getButton(slot);

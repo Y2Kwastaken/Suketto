@@ -1,5 +1,6 @@
 package sh.miles.suketto.bukkit.menu.holder;
 
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import sh.miles.suketto.nms.container.SukettoContainer;
@@ -33,5 +34,10 @@ public class ContainerSlotHolder implements SlotHolder<SukettoContainer> {
     @Override
     public int getMaxIndex() {
         return container.getMaxSlot();
+    }
+
+    @Override
+    public boolean hasItemAt(int index) {
+        return container.getItem(index).getType() != Material.AIR;
     }
 }

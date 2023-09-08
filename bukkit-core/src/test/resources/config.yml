@@ -3,3 +3,6 @@ test-valued: "Your value is {value}"
 test-multi-valued: "Your values are {value0} and {value1}"
 nested:
   test: "The nested value must be found"
+test-list:
+  - "hello, {name0}."
+  - "goodbye, {name1}."

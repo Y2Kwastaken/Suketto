@@ -2,8 +2,10 @@ package sh.miles.suketto.bukkit.menu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Item;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sh.miles.suketto.bukkit.menu.button.MenuButton;
@@ -48,8 +50,6 @@ public abstract class AbstractMenu<H, V> implements MenuHandler {
         getButtons().forEach((slot, button) -> {
             if (button instanceof ViewMenuButton vbutton && isHumanEntity) {
                 vbutton.build((HumanEntity) viewer);
-            } else {
-                Bukkit.getLogger().warning("Tried to put VButton ");
             }
             slotHolder.setItem(slot, button.icon());
         });
@@ -70,12 +70,25 @@ public abstract class AbstractMenu<H, V> implements MenuHandler {
      * Gets a menu button
      *
      * @param slot the slot to get it from
-     * @return the menu button other wise null
+     * @return the menu button otherwise null
      */
     @Nullable
     public MenuButton getButton(final int slot) {
         validateSlot(slot);
         return this.buttons.get(slot);
+    }
+
+    /**
+     * Fills all empty slots with the specified stack
+     *
+     * @param itemStack the item stack
+     */
+    public void fillEmpty(@NotNull final ItemStack itemStack) {
+        for (int i = slotHolder.getMinIndex(); i <= slotHolder.getMaxIndex(); i++) {
+            if (!slotHolder.hasItemAt(i)) {
+                slotHolder.setItem(i, itemStack);
+            }
+        }
     }
 
     /**

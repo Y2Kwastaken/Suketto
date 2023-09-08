@@ -42,4 +42,24 @@ public final class TranslationHolder {
         return new SukettoComponent(translations.getString(key), replacers);
     }
 
+    /**
+     * Creates a new component from the given translations and replacers
+     *
+     * @param key       the translation key
+     * @param replacers all replacements that must be enforced
+     * @return the SukettoComponent
+     */
+    public SukettoComponentStack newComponentStack(@NotNull final String key, @Nullable Replacer... replacers) {
+        if (!translations.contains(key)) {
+            throw new IllegalArgumentException("the provided key does not exist and therefore a component can not be created for key " + key);
+        }
+
+        if (replacers == null) {
+            replacers = new Replacer[0];
+        }
+
+        return new SukettoComponentStack(translations.getStringList(key), replacers);
+    }
+
+
 }

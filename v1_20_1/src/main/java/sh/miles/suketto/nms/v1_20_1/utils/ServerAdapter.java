@@ -34,7 +34,7 @@ public final class ServerAdapter {
 
             final MethodHandles.Lookup lookup = MethodHandles.lookup();
             MethodHandle gsonHandle = lookup.unreflectGetter(gsonField);
-            gson = (Gson) gsonHandle.invokeExact(null);
+            gson = (Gson) gsonHandle.invokeExact();
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }

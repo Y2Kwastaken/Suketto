@@ -34,16 +34,9 @@ public class MenuManager {
      * @param <V>     viewer type
      */
     @SuppressWarnings("unchecked")
-    public final <V> void open(@NotNull final AbstractInventoryMenu<V> menu, @NotNull HumanEntity... viewers) {
-        boolean isVoid = menu.getViewerClass().isInstance(Void.class);
-        boolean isHumanEntity = menu.getViewerClass().isInstance(HumanEntity.class);
-        if (isVoid) {
-            menu.apply(null);
-        }
-        for (HumanEntity viewer : viewers) {
-            if (isHumanEntity) {
-                menu.apply((V) viewer);
-            }
+    public final <V extends HumanEntity> void open(@NotNull final AbstractInventoryMenu<V> menu, @NotNull V... viewers) {
+        for (V viewer : viewers) {
+            menu.apply(viewer);
             menu.open(viewer);
         }
         registerHandler(menu.getSlotHolder().getHolder(), menu);

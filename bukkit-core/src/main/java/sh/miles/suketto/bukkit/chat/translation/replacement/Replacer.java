@@ -57,6 +57,7 @@ public class Replacer implements BiFunction<String, Object, String> {
 
     /**
      * The key to create
+     *
      * @return the string
      */
     @NotNull
@@ -84,6 +85,7 @@ public class Replacer implements BiFunction<String, Object, String> {
 
     /**
      * Creates replacer from the key
+     *
      * @param key the key
      * @return the new replacer
      */

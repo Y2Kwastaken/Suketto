@@ -35,10 +35,11 @@ public class ItemHandleImpl implements ItemHandle {
     }
 
     @Override
-    public void setName(@NotNull ItemStack item, @NotNull final BaseComponent name) {
+    public ItemStack setName(@NotNull ItemStack item, @NotNull final BaseComponent name) {
         final CraftItemStack craftItem = ensureCraftStack(item);
         final net.minecraft.world.item.ItemStack nmsItem = getHandle(craftItem);
         nmsItem.setHoverName(ServerAdapter.toMinecraftChat(name));
+        return CraftItemStack.asBukkitCopy(nmsItem);
     }
 
     @Nullable
@@ -51,7 +52,7 @@ public class ItemHandleImpl implements ItemHandle {
     }
 
     @Override
-    public void setLore(@NotNull ItemStack item, @NotNull List<BaseComponent> lore) {
+    public ItemStack setLore(@NotNull ItemStack item, @NotNull List<BaseComponent> lore) {
         final CraftItemStack craftItem = ensureCraftStack(item);
         final net.minecraft.world.item.ItemStack nmsItem = getHandle(craftItem);
 
@@ -67,6 +68,7 @@ public class ItemHandleImpl implements ItemHandle {
         }
 
         displayTag.put(net.minecraft.world.item.ItemStack.TAG_LORE, loreTag);
+        return CraftItemStack.asBukkitCopy(nmsItem);
     }
 
     @NotNull

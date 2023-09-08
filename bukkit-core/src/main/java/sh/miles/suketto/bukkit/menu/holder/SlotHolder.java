@@ -21,6 +21,14 @@ public interface SlotHolder<H> {
     void setItem(final int index, @NotNull final ItemStack item);
 
     /**
+     * Checks if the SlotHolder has an item at the specified index
+     *
+     * @param index the index
+     * @return true if there is an item at the index otherwise false
+     */
+    boolean hasItemAt(final int index);
+
+    /**
      * Gets the minimum index of the given slot holder
      *
      * @return the minimum index of the slot holder
