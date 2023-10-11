@@ -6,12 +6,12 @@
     <parent>
         <groupId>sh.miles.suketto</groupId>
         <artifactId>suketto-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>2023.10.5</version>
     </parent>
 
     <artifactId>suketto</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>2023.10.5</version>
 
     <repositories>
         <repository>
@@ -24,22 +24,27 @@
         <dependency>
             <groupId>sh.miles.suketto</groupId>
             <artifactId>core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>sh.miles.suketto</groupId>
-            <artifactId>bukkit-core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>sh.miles.suketto</groupId>
             <artifactId>nms-api</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>sh.miles.suketto</groupId>
+            <artifactId>bukkit-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>sh.miles.suketto</groupId>
             <artifactId>v1_20_1</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>sh.miles.suketto</groupId>
+            <artifactId>v1_20_2</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>de.themoep</groupId>
@@ -47,6 +52,35 @@
             <version>1.7.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <!--<profiles>
+        <profile>
+            <id>1.20.1-nms</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>sh.miles.suketto</groupId>
+                    <artifactId>v1_20_1</artifactId>
+                    <version>2023.10.5</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>1.20.2-nms</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>sh.miles.suketto</groupId>
+                    <artifactId>v1_20_2</artifactId>
+                    <version>2023.10.5</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>-->
 
     <build>
         <plugins>

@@ -5,8 +5,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import sh.miles.suketto.bukkit.chat.translation.SukettoComponent;
-import sh.miles.suketto.bukkit.chat.translation.replacement.Replacement;
+import sh.miles.suketto.bukkit.chat.translation.TranslationComponent;
+import sh.miles.suketto.bukkit.chat.translation.replacing.Replacement;
 
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -31,10 +31,10 @@ public interface MessageGroup<T extends CommandSender> {
     /**
      * Sends the component to the given reader
      *
-     * @param component the component to send
+     * @param components the component to send
      */
-    default void sendMessage(@NotNull final BaseComponent component) {
-        computeOn((s) -> s.spigot().sendMessage(component));
+    default void sendMessage(@NotNull final BaseComponent... components) {
+        computeOn((s) -> s.spigot().sendMessage(components));
     }
 
     /**
@@ -43,18 +43,18 @@ public interface MessageGroup<T extends CommandSender> {
      * @param component    the component to send
      * @param replacements the replacements if any
      */
-    default void sendMessage(@NotNull final SukettoComponent component, @NotNull final Replacement... replacements) {
+    default void sendMessage(@NotNull final TranslationComponent component, @NotNull final Replacement... replacements) {
         sendMessage(component.get(replacements));
     }
 
     /**
      * Sends the component from the given sender to the current group
      *
-     * @param sender    who sent the message
-     * @param component the component that was sent
+     * @param sender     who sent the message
+     * @param components the component that was sent
      */
-    default void sendMessage(@NotNull final UUID sender, @NotNull final BaseComponent component) {
-        computeOn((s) -> s.spigot().sendMessage(sender, component));
+    default void sendMessage(@NotNull final UUID sender, @NotNull final BaseComponent... components) {
+        computeOn((s) -> s.spigot().sendMessage(sender, components));
     }
 
     /**
@@ -64,7 +64,7 @@ public interface MessageGroup<T extends CommandSender> {
      * @param component    the component that was sent
      * @param replacements the replacements if any
      */
-    default void sendMessage(@NotNull final UUID sender, @NotNull final SukettoComponent component, @NotNull final Replacement... replacements) {
+    default void sendMessage(@NotNull final UUID sender, @NotNull final TranslationComponent component, @NotNull final Replacement... replacements) {
         sendMessage(sender, component.get(replacements));
     }
 

@@ -5,12 +5,12 @@
     <parent>
         <groupId>sh.miles.suketto</groupId>
         <artifactId>suketto-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>2023.10.5</version>
     </parent>
 
     <artifactId>bukkit-core</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>2023.10.5</version>
 
     <repositories>
         <repository>

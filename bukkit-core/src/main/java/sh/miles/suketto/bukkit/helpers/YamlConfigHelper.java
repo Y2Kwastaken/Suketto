@@ -22,6 +22,7 @@ public class YamlConfigHelper {
 
     /**
      * Creates a yaml config helper
+     *
      * @param plugin the plugin to use
      */
     public YamlConfigHelper(final Plugin plugin) {

@@ -2,6 +2,8 @@ package sh.miles.suketto.bukkit.chat.translation.replacement;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import sh.miles.suketto.bukkit.chat.translation.replacing.Replacement;
+import sh.miles.suketto.bukkit.chat.translation.replacing.Replacer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,11 +22,17 @@ public class ReplacerTest {
     @Test
     public void testReplacerEquality() {
         final Replacer replacerIdentical = new Replacer("value");
-        assertEquals(replacer, replacer);
+        assertEquals(replacer, new Replacement("value", "value"));
         assertEquals(replacerIdentical, replacer);
 
         final Replacement childClass = new Replacement("value", 5);
         assertEquals(replacer, childClass);
+    }
+
+    @Test
+    public void testInStringDetection() {
+        final String detction = "Your value is {number}";
+        assertArrayEquals(new Replacer[]{Replacer.of("number")}, Replacer.inStrings(detction));
     }
 
     @Test

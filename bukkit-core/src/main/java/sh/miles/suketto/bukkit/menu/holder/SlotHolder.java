@@ -3,7 +3,6 @@ package sh.miles.suketto.bukkit.menu.holder;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import sh.miles.suketto.nms.container.SukettoContainer;
 
 /**
  * A Slot Holder can put items in something that can hold slots
@@ -58,15 +57,4 @@ public interface SlotHolder<H> {
     static SlotHolder<Inventory> of(@NotNull final Inventory inventory) {
         return new InventorySlotHolder(inventory);
     }
-
-    /**
-     * Creates a new slot holder
-     *
-     * @param container the container to create it with
-     * @return the new slot holder
-     */
-    static SlotHolder<SukettoContainer> of(@NotNull final SukettoContainer container) {
-        return new ContainerSlotHolder(container);
-    }
-
 }

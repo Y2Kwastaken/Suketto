@@ -50,9 +50,9 @@ public abstract class AbstractInventoryMenu<V> extends AbstractMenu<Inventory, V
     public void open(@NotNull HumanEntity entity) {
         if (!(entity instanceof Player player)) {
             entity.openInventory(slotHolder.getHolder());
-            VersionHandle.INVENTORY.sendTitleChange(entity.getOpenInventory(), title);
+            VersionHandle.MENU.sendTitleChange(entity.getOpenInventory(), title);
             return;
         }
-        VersionHandle.INVENTORY.open(slotHolder.getHolder(), title, player);
+        VersionHandle.MENU.open(player, slotHolder.getHolder(), title);
     }
 }

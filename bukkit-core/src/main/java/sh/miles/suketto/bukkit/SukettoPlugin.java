@@ -2,7 +2,7 @@ package sh.miles.suketto.bukkit;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import sh.miles.suketto.bukkit.command.SCommandRegistrar;
+import sh.miles.suketto.bukkit.command.CommandRegistrar;
 import sh.miles.suketto.bukkit.helpers.YamlConfigHelper;
 import sh.miles.suketto.bukkit.menu.handler.MenuHandlerListener;
 import sh.miles.suketto.bukkit.menu.handler.MenuManager;
@@ -18,7 +18,7 @@ public class SukettoPlugin extends JavaPlugin {
     private TaskWrapper taskWrapper;
     private SukettoScheduler schedulerService;
     private MenuManager menuManager;
-    private SCommandRegistrar commandRegistrar;
+    private CommandRegistrar commandRegistrar;
     private YamlConfigHelper yamlConfigHelper;
     private ServerThreadTicker ticker;
 
@@ -27,7 +27,7 @@ public class SukettoPlugin extends JavaPlugin {
         taskWrapper = new TaskWrapper(this);
         schedulerService = new SukettoScheduler();
         menuManager = new MenuManager();
-        commandRegistrar = new SCommandRegistrar();
+        commandRegistrar = new CommandRegistrar();
         yamlConfigHelper = new YamlConfigHelper(this);
         ticker = new ServerThreadTicker();
 
@@ -72,7 +72,7 @@ public class SukettoPlugin extends JavaPlugin {
      *
      * @return the command registrar
      */
-    public SCommandRegistrar getCommandRegistrar() {
+    public CommandRegistrar getCommandRegistrar() {
         return this.commandRegistrar;
     }
 

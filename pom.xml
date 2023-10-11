@@ -5,13 +5,14 @@
 
     <groupId>sh.miles.suketto</groupId>
     <artifactId>suketto-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>2023.10.5</version>
     <packaging>pom</packaging>
 
     <modules>
         <module>core</module>
         <module>nms-api</module>
         <module>v1_20_1</module>
+        <module>v1_20_2</module>
         <module>bukkit-core</module>
 
         <module>dist</module>
@@ -57,7 +58,7 @@
 
     <distributionManagement>
         <repository>
-            <id>miles-repos</id>
+            <id>miles-repo</id>
             <name>Miles Repositories</name>
             <url>https://maven.miles.sh/libraries</url>
         </repository>

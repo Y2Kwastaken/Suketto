@@ -6,7 +6,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import sh.miles.suketto.bukkit.menu.AbstractContainerMenu;
 import sh.miles.suketto.bukkit.menu.AbstractInventoryMenu;
 
 import java.util.HashMap;
@@ -40,23 +39,6 @@ public class MenuManager {
             menu.open(viewer);
         }
         registerHandler(menu.getSlotHolder().getHolder(), menu);
-    }
-
-    /**
-     * Opens an abstract container menu
-     *
-     * @param menu   the menu to open
-     * @param viewer the viewer who will view the menu
-     * @param <V>    the type of viewer who must be at-least a HumanEntity
-     */
-    public final <V extends HumanEntity> void open(@NotNull final AbstractContainerMenu<V> menu, @NotNull V viewer) {
-        menu.apply(viewer);
-        menu.open(viewer);
-        final InventoryView view = menu.getActiveView();
-        if (view == null) {
-            Bukkit.getLogger().severe("An entity opened a container, but the view could not be obtained within the same tick");
-        }
-        registerHandler(view.getTopInventory(), menu);
     }
 
     /**

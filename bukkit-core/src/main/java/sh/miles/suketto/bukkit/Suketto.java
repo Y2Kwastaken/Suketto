@@ -3,8 +3,7 @@ package sh.miles.suketto.bukkit;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
-import sh.miles.suketto.bukkit.chat.translation.PluginTranslationManager;
-import sh.miles.suketto.bukkit.command.SCommandRegistrar;
+import sh.miles.suketto.bukkit.command.CommandRegistrar;
 import sh.miles.suketto.bukkit.helpers.YamlConfigHelper;
 import sh.miles.suketto.bukkit.menu.handler.MenuHandlerListener;
 import sh.miles.suketto.bukkit.menu.handler.MenuManager;
@@ -28,7 +27,7 @@ public final class Suketto {
     }
 
     /**
-     * Creates a new Scheduler Serivce
+     * Creates a new Scheduler Service
      *
      * @return the scheduler service
      */
@@ -53,8 +52,8 @@ public final class Suketto {
      *
      * @return the new command registrar
      */
-    public static SCommandRegistrar newCommandRegistrar() {
-        return new SCommandRegistrar();
+    public static CommandRegistrar newCommandRegistrar() {
+        return new CommandRegistrar();
     }
 
     /**
@@ -65,18 +64,6 @@ public final class Suketto {
      */
     public static YamlConfigHelper newYamlConfigHelper(@NotNull final Plugin plugin) {
         return new YamlConfigHelper(plugin);
-    }
-
-    /**
-     * Creates a new plugin translation manager
-     *
-     * @param plugin           the plugin to create the manager for
-     * @param fileName         the file name of the translation file
-     * @param yamlConfigHelper the config helper
-     * @return the newly created plugin translation manager
-     */
-    public static PluginTranslationManager newPluginTranslationManager(@NotNull final Plugin plugin, @NotNull String fileName, @NotNull final YamlConfigHelper yamlConfigHelper) {
-        return new PluginTranslationManager(plugin, "bundle", fileName, yamlConfigHelper);
     }
 
     /**
